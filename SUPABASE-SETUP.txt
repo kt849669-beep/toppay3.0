@@ -1,0 +1,71 @@
+TOPPAY — NAYA SUPABASE PROJECT SETUP
+=====================================
+Isi folder me: toppay-supabase-setup.sql  (saari tables ek file me)
+
+Account main nahi bana sakta (allowed nahi) — aap banao, ~5 min. Steps:
+
+
+STEP 1 — SUPABASE PROJECT BANAO
+--------------------------------
+1. https://supabase.com  ->  "Start your project" / Sign in
+   (GitHub se sign in sabse aasan)
+2. "New project" dabao.
+3. Name: toppay
+   Database Password: koi strong password daalo -> KAHIN SAVE KAR LO
+   Region: Mumbai / Singapore (India ke paas)
+4. "Create new project" -> 1-2 min provision hone do.
+
+
+STEP 2 — TABLES BANAO (SQL paste karo)
+---------------------------------------
+1. Left menu -> "SQL Editor" -> "New query"
+2. toppay-supabase-setup.sql poori file copy karke paste karo.
+3. "Run" (ya Ctrl+Enter) dabao.
+   -> "Success. No rows returned" aana chahiye. Sari tables ban jayengi.
+   (Ye FRESH project par ek hi baar chalana — dobara chalane par
+    "policy already exists" error de sakta hai, ignore.)
+
+
+STEP 3 — CREDENTIALS LO (URL + KEY)
+------------------------------------
+1. Left menu -> "Project Settings" (gear icon) -> "API"
+2. Do cheezein copy karo:
+     Project URL          ->  ye SUPABASE_URL hai
+                              (jaise https://abcdxyz.supabase.co)
+     Project API keys -> "anon / public"  ->  ye SUPABASE_ANON_KEY hai
+                              (lamba key, eyJ... ya sb_publishable_...)
+
+
+STEP 4 — VERCEL ME DAALO
+-------------------------
+1. Vercel -> project toppay3-0 -> Settings -> Environment Variables
+2. Do add karo (Production ke liye):
+     SUPABASE_URL        = (Step 3 wala URL)
+     SUPABASE_ANON_KEY   = (Step 3 wali anon key)
+3. Save karke -> Deployments -> latest -> "..." -> Redeploy
+   (env tabhi asar karti hain jab dobara deploy ho)
+
+
+STEP 5 — ADMIN LOGIN (default)
+-------------------------------
+SQL seed se default admin ban gaya:
+     Email:    admin@toppay.com
+     Password: admin@0123
+Login: https://<your-domain>/admin
+LOGIN KE BAAD password turant badalna (Profile/Settings me).
+
+
+STEP 6 — LOCAL DEV (optional)
+------------------------------
+Agar apne PC par bhi chalana ho, toppay folder me .env.local banao:
+     SUPABASE_URL=...
+     SUPABASE_ANON_KEY=...
+(.env.local git me nahi jayega - safe hai)
+
+
+ZAROORI SURAKSHA NOTE
+----------------------
+Is app me users table ko anon (public) read/write allowed hai (custom
+login design). Matlab anon key se user data padha ja sakta hai. Ye app
+ke purane design ka hissa hai. Agar aage secure karna ho to batana -
+Supabase Auth ya service-role-only server access set kar sakte hain.

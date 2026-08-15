@@ -1,0 +1,39 @@
+TOPPAY — LIVE KARO (3 kaam, ~5 min)
+====================================
+Code GitHub par hai. Ye 3 kaam ke baad site chal jayegi.
+
+Maine ek build bug fix kiya: next.config.mjs se `output:'standalone'`
+hata diya — YAHI Vercel par 404 ki wajah thi. Naya next.config.mjs
+neeche STEP A me push hoga.
+
+
+STEP A — FIX PUSH KARO
+-----------------------
+next.config.mjs (is folder me) ko apne toppay folder me replace ho
+chuka hai. cmd me:
+
+  cd /d "C:\Users\OB5\Desktop\toppay"
+  git add next.config.mjs
+  git commit -m "fix: remove standalone output (Vercel 404 fix)"
+  git push origin main
+
+
+STEP B — SUPABASE TABLES (dashboard se, 2 click)
+-------------------------------------------------
+1. supabase.com -> project kxsgjfvtfmbruddeolbt -> SQL Editor -> New query
+2. toppay-supabase-setup.sql (folder me) poori paste -> Run
+3. "Success" -> tables ban gayi
+(DB password ki app ko zaroorat NAHI. Jo aapne chat me bheja tha use
+ Settings -> Database -> Reset password se badal dena.)
+
+
+STEP C — VERCEL ENV + REDEPLOY
+-------------------------------
+1. Vercel -> toppay3-0 -> Settings -> Environment Variables -> add:
+     SUPABASE_URL       = https://kxsgjfvtfmbruddeolbt.supabase.co
+     SUPABASE_ANON_KEY  = sb_publishable__asg5eO_X6CrsIp9DXO2bQ_H0Gr5c-j
+2. Deployments tab -> sabse upar wala -> "..." -> Redeploy
+   (Step A ka push khud bhi ek naya deploy trigger karega — dono me se
+    jo baad me ho, wo final. Env vars zaroor pehle daal dena.)
+
+Ho jaye to toppay3-0.vercel.app khol ke batao.
