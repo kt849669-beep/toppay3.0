@@ -1,177 +1,235 @@
-﻿import fs from 'node:fs';
+/**
+ * TopPay SEO audit.
+ *
+ * Run: npm run test:seo   (generator pehle chalta hai)
+ *
+ * Ye test un exact galtiyon ko dobara aane se rokta hai jo audit me mili thi:
+ *  - www / non-www ka mismatch
+ *  - canonical URL jo khud redirect ho rahi ho
+ *  - sitemap me redirecting URL
+ *  - ek hi page par do FAQPage block
+ *  - missing hreflang / og:image / keywords
+ *  - thin content
+ */
+
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const domain = 'https://www.web-toppay.in';
-const publicPages = [
-  'about-toppay.html',
-  'toppay-apk.html',
-  'toppay-support.html',
-  'toppay-usdt.html',
-  'toppay-guide.html',
-  'how-to-use-toppay.html',
-  'how-to-deposit-toppay.html',
-  'how-to-deposit-usdt-toppay.html',
-  'toppay-password-help.html',
-];
+const publicDir = path.join(root, 'public');
+const DOMAIN = 'https://www.web-toppay.in';
+const MIN_WORDS = 600;
 
 const failures = [];
+const notes = [];
 
-const targetQueries = {
-  'about-toppay.html': ['TopPay', 'Toppay', 'Top pay', 'TopPay login'],
-  'toppay-apk.html': ['TopPay app', 'TopPay APK', 'Top pay app', 'TopPay login'],
-  'toppay-support.html': ['TopPay support', 'TopPay login help', 'TopPay password'],
-  'toppay-usdt.html': ['TopPay USDT', 'TopPay USDT deposit', 'TopPay USDT withdrawal'],
-  'toppay-guide.html': ['TopPay', 'Toppay', 'Top pay', 'TopPay login', 'TopPay app', 'TopPay APK', 'TopPay USDT', 'TopPay password'],
-  'how-to-use-toppay.html': ['How to use TopPay', 'TopPay login', 'TopPay app'],
-  'how-to-deposit-toppay.html': ['How to deposit in TopPay', 'TopPay deposit', 'TopPay login'],
-  'how-to-deposit-usdt-toppay.html': ['How to deposit USDT in TopPay', 'TopPay USDT deposit', 'TopPay USDT'],
-  'toppay-password-help.html': ['TopPay password', 'TopPay password reset', 'TopPay login help'],
-};
-
-function read(relativePath) {
-  return fs.readFileSync(path.join(root, relativePath), 'utf8');
-}
-
-function expect(condition, message) {
+function check(condition, message) {
   if (!condition) failures.push(message);
 }
 
-function headValue(html, tag, attribute, value, outputAttribute) {
-  const tags = html.match(new RegExp(`<${tag}\\b[^>]*>`, 'gi')) ?? [];
-  for (const candidate of tags) {
-    const selector = candidate.match(
-      new RegExp(`\\b${attribute}\\s*=\\s*["']([^"']+)["']`, 'i'),
-    );
-    if (selector?.[1]?.toLowerCase() !== value.toLowerCase()) continue;
-    const output = candidate.match(
-      new RegExp(`\\b${outputAttribute}\\s*=\\s*["']([^"']*)["']`, 'i'),
-    );
-    return output?.[1] ?? '';
-  }
-  return '';
+function read(file) {
+  return fs.readFileSync(file, 'utf8');
 }
 
-function validateJsonLd(html, label) {
-  const scripts = [
-    ...html.matchAll(
-      /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
-    ),
-  ];
-  expect(scripts.length > 0, `${label}: missing JSON-LD`);
-  for (const script of scripts) {
+/* ---------------------------------------------------------------- *
+ * 1. Config-level checks
+ * ---------------------------------------------------------------- */
+
+const vercel = JSON.parse(read(path.join(root, 'vercel.json')));
+const redirectSources = new Set((vercel.redirects || []).map((r) => r.source));
+const rewriteSources = new Set((vercel.rewrites || []).map((r) => r.source));
+
+check(
+  (vercel.redirects || []).some(
+    (r) => (r.has || []).some((h) => h.type === 'host' && h.value === 'web-toppay.in'),
+  ),
+  'vercel.json: non-www to www 301 redirect missing',
+);
+
+/* ---------------------------------------------------------------- *
+ * 2. robots.txt & sitemap.xml
+ * ---------------------------------------------------------------- */
+
+const robots = read(path.join(publicDir, 'robots.txt'));
+check(robots.includes(`Sitemap: ${DOMAIN}/sitemap.xml`), 'robots.txt: sitemap line missing or wrong host');
+check(robots.includes('Disallow: /admin'), 'robots.txt: /admin not disallowed');
+check(robots.includes('Disallow: /user-app/'), 'robots.txt: /user-app/ not disallowed (duplicate of /)');
+check(robots.includes('Disallow: /portal.html'), 'robots.txt: /portal.html not disallowed');
+check(robots.includes('Disallow: /offline.html'), 'robots.txt: /offline.html not disallowed');
+
+const sitemap = read(path.join(publicDir, 'sitemap.xml'));
+const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
+check(sitemapUrls.length > 0, 'sitemap.xml: no URLs');
+
+for (const url of sitemapUrls) {
+  check(url.startsWith(`${DOMAIN}/`), `sitemap.xml: URL is not on the canonical host: ${url}`);
+  const pathname = url.replace(DOMAIN, '') || '/';
+  check(
+    !redirectSources.has(pathname),
+    `sitemap.xml: contains a URL that vercel.json redirects (${pathname}) -- Google will mark it "Page with redirect"`,
+  );
+}
+check(new Set(sitemapUrls).size === sitemapUrls.length, 'sitemap.xml: duplicate URLs');
+
+/* ---------------------------------------------------------------- *
+ * 3. manifest.json
+ * ---------------------------------------------------------------- */
+
+const manifestRaw = read(path.join(publicDir, 'manifest.json'));
+check(manifestRaw.trim().length > 0, 'manifest.json is empty (referenced by <link rel="manifest">)');
+let manifest = {};
+try {
+  manifest = JSON.parse(manifestRaw);
+} catch (error) {
+  failures.push(`manifest.json: invalid JSON (${error.message})`);
+}
+check(Boolean(manifest.name && manifest.start_url && (manifest.icons || []).length), 'manifest.json: missing name, start_url or icons');
+
+/* ---------------------------------------------------------------- *
+ * 4. Open Graph image asset
+ * ---------------------------------------------------------------- */
+
+check(fs.existsSync(path.join(publicDir, 'toppay-og.png')), 'public/toppay-og.png missing (SVG og:image does not render on social platforms)');
+
+/* ---------------------------------------------------------------- *
+ * 5. Per-page checks
+ * ---------------------------------------------------------------- */
+
+const htmlFiles = fs
+  .readdirSync(publicDir)
+  .filter((file) => file.endsWith('.html') && !['404.html', 'offline.html'].includes(file));
+
+check(htmlFiles.length >= 15, `public/: expected at least 15 SEO pages, found ${htmlFiles.length}`);
+
+for (const file of htmlFiles) {
+  const html = read(path.join(publicDir, file));
+  const label = `public/${file}`;
+  const one = (re) => html.match(re)?.[1]?.trim();
+
+  /* -- head essentials -- */
+  const title = one(/<title>(.*?)<\/title>/s);
+  check(Boolean(title), `${label}: missing <title>`);
+  if (title) check(title.length <= 75, `${label}: title too long (${title.length} chars)`);
+
+  const description = one(/<meta name="description" content="(.*?)"/s);
+  check(Boolean(description), `${label}: missing meta description`);
+  if (description) {
+    check(description.length >= 70 && description.length <= 175, `${label}: meta description length ${description.length} (want 70-175)`);
+  }
+
+  check(Boolean(one(/<meta name="keywords" content="(.*?)"/s)), `${label}: missing meta keywords`);
+
+  /* -- canonical must be on the canonical host AND must not redirect -- */
+  const canonical = one(/<link rel="canonical" href="(.*?)"/);
+  check(Boolean(canonical), `${label}: missing canonical`);
+  if (canonical) {
+    check(canonical === `${DOMAIN}/${file}`, `${label}: canonical should be ${DOMAIN}/${file}, found ${canonical}`);
+    const canonicalPath = canonical.replace(DOMAIN, '');
+    check(
+      !redirectSources.has(canonicalPath),
+      `${label}: canonical points at a URL that vercel.json redirects (${canonicalPath})`,
+    );
+    check(
+      !rewriteSources.has(canonicalPath),
+      `${label}: canonical points at a rewrite source (${canonicalPath})`,
+    );
+    check(sitemapUrls.includes(canonical), `${label}: canonical URL is not listed in sitemap.xml`);
+  }
+
+  /* -- hreflang -- */
+  check(html.includes('hreflang="x-default"'), `${label}: missing hreflang x-default`);
+
+  /* -- social -- */
+  check(html.includes(`${DOMAIN}/toppay-og.png`), `${label}: og:image is not the 1200x630 PNG`);
+  check(html.includes('twitter:card'), `${label}: missing twitter:card`);
+
+  /* -- no non-www references anywhere in the document -- */
+  const nonWww = (html.match(/https:\/\/web-toppay\.in/g) || []).length;
+  check(nonWww === 0, `${label}: ${nonWww} non-www reference(s) found -- must use ${DOMAIN}`);
+
+  /* -- headings -- */
+  const h1s = html.match(/<h1[^>]*>/g) || [];
+  check(h1s.length === 1, `${label}: expected exactly 1 <h1>, found ${h1s.length}`);
+
+  /* -- images have alt -- */
+  const imgs = html.match(/<img[^>]*>/g) || [];
+  const missingAlt = imgs.filter((tag) => !/\salt=/.test(tag));
+  check(missingAlt.length === 0, `${label}: ${missingAlt.length} <img> without alt`);
+
+  /* -- JSON-LD: valid, single @graph, at most one FAQPage -- */
+  const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  check(blocks.length >= 1, `${label}: no JSON-LD found`);
+  let faqCount = 0;
+  for (const [, raw] of blocks) {
     try {
-      JSON.parse(script[1]);
+      const parsed = JSON.parse(raw);
+      const nodes = parsed['@graph'] || [parsed];
+      faqCount += nodes.filter((node) => node['@type'] === 'FAQPage').length;
+      for (const node of nodes) {
+        const ids = JSON.stringify(node).match(/https:\/\/web-toppay\.in/g) || [];
+        check(ids.length === 0, `${label}: JSON-LD contains a non-www @id/url`);
+      }
     } catch (error) {
       failures.push(`${label}: invalid JSON-LD (${error.message})`);
     }
   }
+  check(faqCount <= 1, `${label}: ${faqCount} FAQPage blocks on one page (only 1 allowed)`);
+
+  /* -- content depth -- */
+  const text = html
+    .replace(/<script[\s\S]*?<\/script>/g, ' ')
+    .replace(/<style[\s\S]*?<\/style>/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const words = text.split(' ').filter(Boolean).length;
+  check(words >= MIN_WORDS, `${label}: only ${words} words (minimum ${MIN_WORDS})`);
+  notes.push(`${file.padEnd(34)} ${String(words).padStart(5)} words`);
 }
 
-const login = read('user-app/pages/login.html');
-expect(login.includes('<h1 class="header">LOG IN</h1>'), 'login: missing visible H1');
-expect(
-  headValue(login, 'link', 'rel', 'canonical', 'href') === `${domain}/`,
-  'login: canonical must be the root URL',
-);
-expect(
-  headValue(login, 'meta', 'name', 'description', 'content').length >= 70,
-  'login: description is missing or too short',
-);
-expect(!login.includes('/assets/toppay-og-image.jpg'), 'login: references missing OG image');
-expect(!login.includes('/assets/logo.png'), 'login: references missing logo');
-validateJsonLd(login, 'login');
+/* ---------------------------------------------------------------- *
+ * 6. Homepage (login page) checks
+ * ---------------------------------------------------------------- */
 
-const home = read('user-app/pages/home.html');
-expect(
-  /name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(home),
-  'home: authenticated dashboard must be noindex',
-);
-expect(
-  headValue(home, 'link', 'rel', 'canonical', 'href') === `${domain}/home`,
-  'home: canonical must use the clean /home route',
-);
-
-for (const filename of publicPages) {
-  const html = read(`public/${filename}`);
-  const label = `public/${filename}`;
-  expect(/<meta\b[^>]*name=["']viewport["']/i.test(html), `${label}: missing viewport`);
-  expect(
-    headValue(html, 'meta', 'name', 'description', 'content').length >= 70,
-    `${label}: missing or short description`,
-  );
-  expect(
-    headValue(html, 'link', 'rel', 'canonical', 'href') === `${domain}/${filename}`,
-    `${label}: canonical mismatch`,
-  );
-  expect(/<h1\b[^>]*>[^<]+<\/h1>/i.test(html), `${label}: missing H1`);
-  expect((html.match(/<h1\b/gi) ?? []).length === 1, `${label}: must contain exactly one H1`);
-  expect(
-    /class="[^"]*hero-login[^"]*" href="\/">TopPay Login<\/a>/.test(html),
-    `${label}: missing prominent TopPay Login link`,
-  );
-  expect(html.includes('alt="TopPay logo'), `${label}: missing TopPay logo alt text`);
-  expect(
-    html.includes('href="https://app-web.toppay-web.com/regist?code=2invite5p6">Register Now</a>'),
-    `${label}: missing Register Now CTA`,
-  );
-  expect(
-    html.includes('href="https://t.me/toppayofficial00"'),
-    `${label}: missing Telegram CTA`,
-  );
-  for (const relatedPage of publicPages) {
-    expect(
-      html.includes(`href="/${relatedPage}"`),
-      `${label}: missing internal link to ${relatedPage}`,
-    );
+const loginPath = path.join(root, 'user-app', 'pages', 'login.html');
+const login = read(loginPath);
+check(login.includes(`<link rel="canonical" href="${DOMAIN}/" />`), 'login.html: canonical must be the www homepage');
+check((login.match(/https:\/\/web-toppay\.in/g) || []).length === 0, 'login.html: non-www reference found');
+check(login.includes('hreflang="x-default"'), 'login.html: missing hreflang x-default');
+check(login.includes(`${DOMAIN}/toppay-og.png`), 'login.html: og:image is not the 1200x630 PNG');
+const loginLd = [...login.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+check(loginLd.length === 1, `login.html: expected 1 JSON-LD block, found ${loginLd.length}`);
+for (const [, raw] of loginLd) {
+  try {
+    JSON.parse(raw);
+  } catch (error) {
+    failures.push(`login.html: invalid JSON-LD (${error.message})`);
   }
-  for (const query of targetQueries[filename]) {
-    expect(
-      html.toLowerCase().includes(query.toLowerCase()),
-      `${label}: missing mapped search topic ${query}`,
-    );
-  }
-  expect(html.includes('Search topics covered'), `${label}: missing visible topic mapping`);
-  validateJsonLd(html, label);
 }
 
-const usdtGuide = read('public/toppay-usdt.html');
-for (const calculatorId of ['usdtAmount', 'usdtRange', 'inrRate', 'inrOutput', 'rateBadge']) {
-  expect(usdtGuide.includes(`id="${calculatorId}"`), `USDT calculator: missing ${calculatorId}`);
-}
-expect(
-  usdtGuide.includes("new Intl.NumberFormat('en-IN'"),
-  'USDT calculator: missing INR number formatting',
-);
+/* ---------------------------------------------------------------- *
+ * 7. portal.html must not compete with the homepage
+ * ---------------------------------------------------------------- */
 
-expect(fs.statSync(path.join(root, 'public', 'toppay-logo.svg')).size > 0, 'public logo is empty');
-
-const sitemap = read('public/sitemap.xml');
-const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-const expectedLocations = [`${domain}/`, ...publicPages.map((page) => `${domain}/${page}`)];
-expect(
-  JSON.stringify(sitemapLocations) === JSON.stringify(expectedLocations),
-  `sitemap URLs mismatch: ${sitemapLocations.join(', ')}`,
-);
-expect(!sitemap.includes('/user-app/'), 'sitemap: internal app URL must not be submitted');
-expect(
-  read('public/toppay-guide.html').includes('alternateName'),
-  'guide hub: missing TopPay alternate-name entity signal',
-);
-for (const filename of publicPages) {
-  const html = read(`public/${filename}`);
-  expect(html.includes('href="/toppay-guide.html"'), `${filename}: missing guide hub link`);
+const portalPath = path.join(root, 'portal.html');
+if (fs.existsSync(portalPath)) {
+  const portal = read(portalPath);
+  check(/<meta name="robots" content="noindex/.test(portal), 'portal.html: must be noindex (duplicate homepage)');
 }
 
-const robots = read('public/robots.txt');
-expect(robots.includes(`Sitemap: ${domain}/sitemap.xml`), 'robots: sitemap directive missing');
-expect(robots.includes('Disallow: /admin'), 'robots: admin disallow missing');
+/* ---------------------------------------------------------------- *
+ * Report
+ * ---------------------------------------------------------------- */
+
+console.log('\nWord count per page');
+console.log('-------------------');
+notes.sort().forEach((line) => console.log('  ' + line));
 
 if (failures.length) {
-  console.error(`SEO audit failed with ${failures.length} issue(s):`);
-  for (const failure of failures) console.error(`- ${failure}`);
+  console.error(`\nSEO audit FAILED with ${failures.length} issue(s):\n`);
+  failures.forEach((message) => console.error('  x ' + message));
   process.exit(1);
 }
 
-console.log(`SEO audit passed: ${expectedLocations.length} indexable URLs validated.`);
+console.log(`\nSEO audit passed: ${htmlFiles.length} pages, ${sitemapUrls.length} sitemap URLs, 0 issues.\n`);

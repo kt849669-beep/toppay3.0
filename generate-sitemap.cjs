@@ -1,70 +1,34 @@
-﻿const fs = require('fs');
+/**
+ * sitemap.xml generator.
+ *
+ * IMPORTANT: yahan sirf FINAL, non-redirecting URLs hi honi chahiye.
+ * Pehle sitemap me /toppay-apk.html tha jo vercel.json me 301 redirect ho raha
+ * tha -- isi wajah se Google "Page with redirect" mark karta tha. Wo redirects
+ * ab vercel.json se hata diye gaye hain aur .html canonical hi final URL hai.
+ */
+
+const fs = require('fs');
 const path = require('path');
 
-const domain = 'https://www.web-toppay.in';
+const { domain, pages, legalPages } = require('./seo-content.cjs');
+
 const sitemapFile = path.join(__dirname, 'public', 'sitemap.xml');
 
+const homepage = {
+  loc: `${domain}/`,
+  source: path.join(__dirname, 'user-app', 'pages', 'login.html'),
+  changefreq: 'daily',
+  priority: '1.0',
+};
+
 const urls = [
-  {
-    loc: `${domain}/`,
-    source: path.join(__dirname, 'user-app', 'pages', 'login.html'),
-    changefreq: 'weekly',
-    priority: '1.0',
-  },
-  {
-    loc: `${domain}/about-toppay.html`,
-    source: path.join(__dirname, 'public', 'about-toppay.html'),
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
-  {
-    loc: `${domain}/toppay-apk.html`,
-    source: path.join(__dirname, 'public', 'toppay-apk.html'),
-    changefreq: 'monthly',
-    priority: '0.8',
-  },
-  {
-    loc: `${domain}/toppay-support.html`,
-    source: path.join(__dirname, 'public', 'toppay-support.html'),
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
-  {
-    loc: `${domain}/toppay-usdt.html`,
-    source: path.join(__dirname, 'public', 'toppay-usdt.html'),
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
-  {
-    loc: `${domain}/toppay-guide.html`,
-    source: path.join(__dirname, 'public', 'toppay-guide.html'),
-    changefreq: 'monthly',
-    priority: '0.8',
-  },
-  {
-    loc: `${domain}/how-to-use-toppay.html`,
-    source: path.join(__dirname, 'public', 'how-to-use-toppay.html'),
-    changefreq: 'monthly',
-    priority: '0.8',
-  },
-  {
-    loc: `${domain}/how-to-deposit-toppay.html`,
-    source: path.join(__dirname, 'public', 'how-to-deposit-toppay.html'),
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
-  {
-    loc: `${domain}/how-to-deposit-usdt-toppay.html`,
-    source: path.join(__dirname, 'public', 'how-to-deposit-usdt-toppay.html'),
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
-  {
-    loc: `${domain}/toppay-password-help.html`,
-    source: path.join(__dirname, 'public', 'toppay-password-help.html'),
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
+  homepage,
+  ...[...pages, ...legalPages].map((page) => ({
+    loc: `${domain}/${page.filename}`,
+    source: path.join(__dirname, 'public', page.filename),
+    changefreq: page.changefreq || 'monthly',
+    priority: page.priority || '0.6',
+  })),
 ];
 
 function xmlEscape(value) {
@@ -84,6 +48,9 @@ function generateSitemap() {
   for (const entry of urls) {
     if (!fs.existsSync(entry.source)) {
       throw new Error(`Cannot generate sitemap: missing source ${entry.source}`);
+    }
+    if (/\/(toppay-apk|toppay-usdt)$/.test(entry.loc)) {
+      throw new Error(`Sitemap must not contain redirecting URL: ${entry.loc}`);
     }
   }
 
@@ -105,7 +72,7 @@ ${entries}
 `;
 
   fs.writeFileSync(sitemapFile, sitemap, 'utf8');
-  console.log(`Sitemap generated successfully at ${sitemapFile}`);
+  console.log(`Sitemap generated with ${urls.length} URLs at ${sitemapFile}`);
 }
 
 generateSitemap();

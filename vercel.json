@@ -3,17 +3,31 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "web-toppay.in" }],
+      "destination": "https://www.web-toppay.in/$1",
+      "permanent": true
+    },
     { "source": "/login", "destination": "/", "permanent": true },
-    { "source": "/toppay-apk.html", "destination": "/toppay-apk", "permanent": true },
-    { "source": "/toppay-usdt.html", "destination": "/toppay-usdt", "permanent": true }
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/portal.html", "destination": "/", "permanent": true },
+    { "source": "/toppay-guide", "destination": "/toppay-guide.html", "permanent": true },
+    { "source": "/toppay-real-or-fake", "destination": "/toppay-real-or-fake.html", "permanent": true },
+    { "source": "/toppay-app-download", "destination": "/toppay-app-download.html", "permanent": true },
+    { "source": "/toppay-withdrawal", "destination": "/toppay-withdrawal.html", "permanent": true },
+    { "source": "/usdt-to-inr", "destination": "/usdt-to-inr.html", "permanent": true },
+    { "source": "/toppay-customer-care", "destination": "/toppay-customer-care.html", "permanent": true },
+    { "source": "/toppay-hindi", "destination": "/toppay-hindi.html", "permanent": true },
+    { "source": "/toppay-apk", "destination": "/toppay-apk.html", "permanent": true },
+    { "source": "/toppay-usdt", "destination": "/toppay-usdt.html", "permanent": true }
   ],
   "rewrites": [
     { "source": "/", "destination": "/user-app/pages/login.html" },
     { "source": "/home", "destination": "/user-app/pages/home.html" },
-    { "source": "/admin", "destination": "/admin-app/pages/login.html" },
-    { "source": "/toppay-apk", "destination": "/toppay-apk.html" },
-    { "source": "/toppay-usdt", "destination": "/toppay-usdt.html" }
+    { "source": "/admin", "destination": "/admin-app/pages/login.html" }
   ],
   "headers": [
     {
@@ -39,7 +53,10 @@
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
         },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://kxsgjfvtfmbruddeolbt.supabase.co https://*.supabase.co; media-src 'self' https:; frame-ancestors 'none';" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://kxsgjfvtfmbruddeolbt.supabase.co https://*.supabase.co; media-src 'self' https:; frame-ancestors 'none';"
+        }
       ]
     },
     {
@@ -49,6 +66,20 @@
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
         }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
     }
   ]

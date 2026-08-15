@@ -1,6 +1,18 @@
+# https://www.web-toppay.in/robots.txt
 User-agent: *
+Allow: /
+
+# Private / duplicate routes
 Disallow: /admin
 Disallow: /admin-app/
-Allow: /
+Disallow: /user-app/
+Disallow: /portal.html
+Disallow: /404.html
+Disallow: /offline.html
+
+# Media and asset crawling is allowed
+Allow: /assets/
+Allow: /toppay-logo.svg
+Allow: /toppay-og.png
 
 Sitemap: https://www.web-toppay.in/sitemap.xml

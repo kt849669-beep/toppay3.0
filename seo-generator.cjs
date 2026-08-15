@@ -1,9 +1,22 @@
-﻿const fs = require('fs');
+/**
+ * TopPay SEO page generator.
+ *
+ * Content ke liye seo-content.cjs, visual styles ke liye seo-styles.cjs.
+ * Ye file sirf HTML template + head tags + schema banata hai.
+ *
+ * Run: npm run generate:seo   (build se pehle automatically chalta hai)
+ */
+
+const fs = require('fs');
 const path = require('path');
 
-const domain = 'https://www.web-toppay.in';
+const { domain, websiteNode, organizationNode, pages, legalPages } = require('./seo-content.cjs');
+const { styles } = require('./seo-styles.cjs');
+
 const publicDir = path.join(__dirname, 'public');
-const socialImage = `${domain}/toppay-logo.svg`;
+const socialImage = `${domain}/toppay-og.png`;
+const registerUrl = 'https://app-web.toppay-web.com/regist?code=2invite5p6';
+const telegramUrl = 'https://t.me/toppayofficial00';
 
 if (!fs.existsSync(publicDir)) {
   fs.mkdirSync(publicDir, { recursive: true });
@@ -13,625 +26,83 @@ function writeIfChanged(filePath, content) {
   if (fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf8') === content) {
     return false;
   }
-
   fs.writeFileSync(filePath, content, 'utf8');
   return true;
 }
 
-const pages = [
-  {
-    filename: 'about-toppay.html',
-    title: 'About TopPay | App, Login and Payment Platform',
-    description:
-      'Learn what TopPay is, where to access the official web login, how the mobile app experience works and where to find account and payment guides.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'AboutPage',
-      '@id': `${domain}/about-toppay.html#webpage`,
-      url: `${domain}/about-toppay.html`,
-      name: 'About TopPay',
-      description:
-        'Information about TopPay account access, the web app and available payment features.',
-      isPartOf: {
-        '@type': 'WebSite',
-        '@id': `${domain}/#website`,
-        url: `${domain}/`,
-        name: 'TopPay',
-      },
-      about: {
-        '@type': 'Organization',
-        '@id': `${domain}/#organization`,
-        name: 'TopPay',
-        url: `${domain}/`,
-        logo: socialImage,
-      },
-    },
-    body: `
-      <h1>About TopPay</h1>
-      <p>TopPay provides mobile-friendly account access for viewing the payment and wallet features available to each user. The main <strong>TopPay login</strong> is available on this domain.</p>
-      <h2>Using the TopPay app</h2>
-      <p>The <strong>TopPay app</strong> experience is delivered through a responsive web interface. After signing in, users can view the tools enabled for their account and follow the instructions shown in the dashboard.</p>
-      <h2>Account access</h2>
-      <p>Use the main login page and keep your password and MPIN private. If you cannot access your account, use the password-recovery option shown on the login screen.</p>
-      <p>Read about <a href="/toppay-apk.html">TopPay app and APK access</a>, visit <a href="/toppay-support.html">TopPay support</a>, or continue to the <a href="/">TopPay login</a>.</p>
-    `,
-  },
-  {
-    filename: 'toppay-apk.html',
-    title: 'TopPay APK and App Access | TopPay Login',
-    description:
-      'Find safe TopPay app and APK access information, use the verified web login and learn why unverified download files can put account details at risk.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      '@id': `${domain}/toppay-apk.html#webpage`,
-      url: `${domain}/toppay-apk.html`,
-      name: 'TopPay APK and App Access',
-      description:
-        'Safe access information for the TopPay app, web login and APK-related searches.',
-      isPartOf: {
-        '@type': 'WebSite',
-        '@id': `${domain}/#website`,
-        url: `${domain}/`,
-        name: 'TopPay',
-      },
-    },
-    body: `
-      <h1>TopPay App and APK Access</h1>
-      <p>The <strong>TopPay app</strong> can be accessed through the mobile-friendly web login on this domain. This page does not currently host a direct <strong>TopPay APK</strong> file.</p>
-      <h2>Safe TopPay login</h2>
-      <p>Use the <a href="/">TopPay login</a> page in your browser. Check that the address begins with <strong>https://web-toppay.in/</strong> before entering account details.</p>
-      <h2>Avoid unverified APK files</h2>
-      <p>Do not install files from unknown websites or messages claiming to provide a Top Pay app download. An unverified APK can expose passwords, MPINs or other account information.</p>
-      <p>For account-access questions, visit <a href="/toppay-support.html">TopPay support</a>.</p>
-    `,
-  },
-  {
-    filename: 'toppay-support.html',
-    title: 'TopPay Support | Login and App Help',
-    description:
-      'Get TopPay login, app and account help with password recovery guidance, safe access checks, USDT transaction tips and links to task-specific guides.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      '@id': `${domain}/toppay-support.html#faq`,
-      url: `${domain}/toppay-support.html`,
-      name: 'TopPay Support',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'How do I recover my TopPay login?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Use the password-recovery option shown on the TopPay login screen and never share your password or MPIN.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'What should I check for a pending TopPay USDT transaction?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Confirm the selected network, destination address and blockchain confirmations, then review the status shown in your dashboard.',
-          },
-        },
-      ],
-    },
-    body: `
-      <h1>TopPay Support</h1>
-      <p>Use these steps for common <strong>TopPay login</strong>, app-access and transaction questions.</p>
-      <h2>Frequently asked questions</h2>
-      <h3>How do I recover my TopPay login?</h3>
-      <p>Use the password-recovery option shown on the TopPay login screen. Never share your password or MPIN with another person.</p>
-      <h3>What should I check for a pending TopPay USDT transaction?</h3>
-      <p>Confirm the selected network, destination address and blockchain confirmations, then review the status shown in your dashboard.</p>
-      <p>For platform information, read <a href="/about-toppay.html">About TopPay</a>. For safe web-app access, see the <a href="/toppay-apk.html">TopPay app and APK guide</a>.</p>
-    `,
-  },
-  {
-    filename: 'toppay-usdt.html',
-    title: 'TopPay USDT Guide | Deposit and Withdrawal Checks',
-    description:
-      'Use the TopPay USDT guide to check the selected network, full wallet address, confirmations and account status before a deposit or withdrawal.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'HowTo',
-      '@id': `${domain}/toppay-usdt.html#howto`,
-      url: `${domain}/toppay-usdt.html`,
-      name: 'How to check a TopPay USDT deposit',
-      description:
-        'Steps for checking network and address information before a TopPay USDT transaction.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          name: 'Sign in',
-          text: 'Open the TopPay login page and sign in to your account.',
-        },
-        {
-          '@type': 'HowToStep',
-          name: 'Verify the network and address',
-          text: 'Open the available USDT option and carefully verify the displayed network and wallet address.',
-        },
-        {
-          '@type': 'HowToStep',
-          name: 'Review transaction status',
-          text: 'After submitting a transaction, review its status and required blockchain confirmations.',
-        },
-      ],
-    },
-    body: `
-      <h1>TopPay USDT Guide</h1>
-      <p>This guide explains the checks to make before using a USDT feature available in the <strong>TopPay app</strong>.</p>
-      <h2>Before a USDT deposit</h2>
-      <ol>
-        <li>Open the <a href="/">TopPay login</a> page and sign in.</li>
-        <li>Open the available USDT option and verify the displayed network.</li>
-        <li>Compare the full wallet address before sending funds.</li>
-      </ol>
-      <h2>Transaction status</h2>
-      <p>Processing time can vary by network activity and required blockchain confirmations. Review the transaction status shown in your dashboard before taking another action.</p>
-      <p>For account-access or transaction questions, visit <a href="/toppay-support.html">TopPay support</a>.</p>
-    `,
-  },
-  {
-    filename: 'toppay-guide.html',
-    title: 'TopPay Guides | Login, App, USDT and Password Help',
-    description:
-      'Browse practical TopPay guides for login and app access, account deposits, USDT network checks, password recovery and common support questions.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      '@id': `${domain}/toppay-guide.html#webpage`,
-      url: `${domain}/toppay-guide.html`,
-      name: 'TopPay Guides',
-      description: 'A collection of TopPay account, app, deposit, USDT and password-help guides.',
-      about: {
-        '@type': 'Organization',
-        '@id': `${domain}/#organization`,
-        name: 'TopPay',
-        alternateName: ['Toppay', 'Top pay'],
-        url: `${domain}/`,
-      },
-      mainEntity: {
-        '@type': 'ItemList',
-        itemListElement: [
-          `${domain}/how-to-use-toppay.html`,
-          `${domain}/how-to-deposit-toppay.html`,
-          `${domain}/how-to-deposit-usdt-toppay.html`,
-          `${domain}/toppay-password-help.html`,
-        ].map((url, index) => ({ '@type': 'ListItem', position: index + 1, url })),
-      },
-    },
-    body: `
-      <h1>TopPay Guides</h1>
-      <p><strong>TopPay</strong> is also searched as “Toppay” or “Top pay”. These guides use the consistent brand spelling TopPay and provide direct, task-focused help without changing the login or dashboard workflow.</p>
-      <h2>Account and app access</h2>
-      <ul>
-        <li><a href="/how-to-use-toppay.html">How to use TopPay</a></li>
-        <li><a href="/toppay-apk.html">TopPay app and APK access</a></li>
-        <li><a href="/toppay-password-help.html">TopPay password and login recovery help</a></li>
-      </ul>
-      <h2>Deposit and USDT guides</h2>
-      <ul>
-        <li><a href="/how-to-deposit-toppay.html">How to deposit on TopPay</a></li>
-        <li><a href="/how-to-deposit-usdt-toppay.html">How to deposit USDT on TopPay</a></li>
-        <li><a href="/toppay-usdt.html">TopPay USDT network and transaction checks</a></li>
-      </ul>
-      <p class="notice">Account features can differ. Use only the options and transaction details shown inside your signed-in account, and verify every address or payment instruction before proceeding.</p>
-    `,
-  },
-  {
-    filename: 'how-to-use-toppay.html',
-    title: 'How to Use TopPay | Login and Account Guide',
-    description:
-      'Learn how to use TopPay safely: verify the login URL, sign in to your own account, review available dashboard tools and find the right help guide.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'HowTo',
-      '@id': `${domain}/how-to-use-toppay.html#howto`,
-      url: `${domain}/how-to-use-toppay.html`,
-      name: 'How to use TopPay',
-      description: 'Steps for opening the TopPay login, signing in and using the tools available to an account.',
-      step: [
-        { '@type': 'HowToStep', name: 'Open TopPay', text: 'Open https://web-toppay.in/ and check the address before entering account details.' },
-        { '@type': 'HowToStep', name: 'Sign in', text: 'Enter the phone number and password associated with your own TopPay account.' },
-        { '@type': 'HowToStep', name: 'Review available tools', text: 'After signing in, use only the account tools and instructions displayed in the dashboard.' },
-        { '@type': 'HowToStep', name: 'Get help safely', text: 'Use the password recovery or support guidance when an option is unavailable or unclear.' },
-      ],
-    },
-    body: `
-      <h1>How to Use TopPay</h1>
-      <p>Use the main <a href="/">TopPay login</a> at <strong>https://web-toppay.in/</strong>. Check the full address before entering a phone number, password or other account information.</p>
-      <h2>1. Sign in to your account</h2>
-      <p>Enter the phone number and password connected to your own account. Do not share a password, OTP or MPIN with another person.</p>
-      <h2>2. Review the available dashboard tools</h2>
-      <p>Features may differ by account. Follow the labels and instructions displayed after login rather than relying on an old screenshot or message from an unknown source.</p>
-      <h2>3. Use account help when needed</h2>
-      <p>If you cannot sign in, read the <a href="/toppay-password-help.html">TopPay password help guide</a>. For app-access questions, use the <a href="/toppay-support.html">TopPay support guide</a>.</p>
-      <p class="notice">This guide explains navigation only. It does not request account credentials and does not replace instructions shown inside your account.</p>
-    `,
-  },
-  {
-    filename: 'how-to-deposit-toppay.html',
-    title: 'How to Deposit on TopPay | Account Deposit Guide',
-    description:
-      'Follow safe TopPay deposit checks: sign in, use the option shown in your account, verify payment details and review the transaction status.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'HowTo',
-      '@id': `${domain}/how-to-deposit-toppay.html#howto`,
-      url: `${domain}/how-to-deposit-toppay.html`,
-      name: 'How to deposit on TopPay',
-      description: 'General safety steps for using a deposit option displayed in a TopPay account.',
-      step: [
-        { '@type': 'HowToStep', name: 'Sign in', text: 'Open the main TopPay login and sign in to your own account.' },
-        { '@type': 'HowToStep', name: 'Open the available deposit option', text: 'Use the Deposit option only if it is displayed and active in your dashboard.' },
-        { '@type': 'HowToStep', name: 'Verify the instructions', text: 'Review the displayed method, amount, recipient or wallet details before confirming anything.' },
-        { '@type': 'HowToStep', name: 'Review status', text: 'Check the transaction status shown in the account before attempting another deposit.' },
-      ],
-    },
-    body: `
-      <h1>How to Deposit on TopPay</h1>
-      <p>Sign in through the main <a href="/">TopPay login</a>, then use a Deposit option only when it is available in your account dashboard.</p>
-      <h2>Check the displayed deposit method</h2>
-      <p>Deposit methods and availability can vary. Read the current instructions inside the account and verify the amount, recipient, wallet address or payment reference before taking action.</p>
-      <h2>Confirm the transaction status</h2>
-      <p>After following the displayed process, review the status in your account. Do not repeat a payment only because an external message says the first one failed.</p>
-      <h2>For USDT deposits</h2>
-      <p>Network selection and wallet-address matching require additional checks. Read <a href="/how-to-deposit-usdt-toppay.html">how to deposit USDT on TopPay</a> before using a crypto deposit option.</p>
-      <p class="notice">Never send funds to details copied from an unofficial page, chat or screenshot. Use the current details shown inside your signed-in account.</p>
-    `,
-  },
-  {
-    filename: 'how-to-deposit-usdt-toppay.html',
-    title: 'How to Deposit USDT on TopPay | Network Safety Guide',
-    description:
-      'Learn how to check a TopPay USDT deposit by matching the network, verifying the complete wallet address and reviewing blockchain confirmations.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'HowTo',
-      '@id': `${domain}/how-to-deposit-usdt-toppay.html#howto`,
-      url: `${domain}/how-to-deposit-usdt-toppay.html`,
-      name: 'How to deposit USDT on TopPay',
-      description: 'Safety checks for a USDT deposit option displayed in a TopPay account.',
-      step: [
-        { '@type': 'HowToStep', name: 'Open the account deposit option', text: 'Sign in and open the USDT or crypto deposit option only if it is available in the dashboard.' },
-        { '@type': 'HowToStep', name: 'Match the network', text: 'Use the same supported network on the sending wallet and the TopPay deposit screen.' },
-        { '@type': 'HowToStep', name: 'Verify the complete address', text: 'Compare the full destination wallet address before sending USDT.' },
-        { '@type': 'HowToStep', name: 'Review confirmations and status', text: 'After sending, review blockchain confirmations and the transaction status shown in the account.' },
-      ],
-    },
-    body: `
-      <h1>How to Deposit USDT on TopPay</h1>
-      <p>Open a USDT deposit option only after signing in through <a href="/">web-toppay.in</a>. Availability, supported networks and addresses can change, so the live account screen is the source to verify.</p>
-      <h2>Match the USDT network</h2>
-      <p>The network selected in the sending wallet must match the network displayed for the deposit. A network mismatch can cause a permanent loss of funds.</p>
-      <h2>Check the complete wallet address</h2>
-      <p>Compare the beginning, middle and end of the destination address. Do not rely only on the first or last few characters, and do not use an address received through an unknown message.</p>
-      <h2>Wait for confirmations</h2>
-      <p>Processing time depends on network activity and required confirmations. Review the transaction status before attempting another transfer.</p>
-      <p>For broader checks, read the <a href="/toppay-usdt.html">TopPay USDT guide</a> or the <a href="/how-to-deposit-toppay.html">general TopPay deposit guide</a>.</p>
-      <p class="notice">This page does not display or provide a deposit address. Always use the current address shown inside your own account.</p>
-    `,
-  },
-  {
-    filename: 'toppay-password-help.html',
-    title: 'TopPay Password Help | Reset and Login Recovery',
-    description:
-      'Use safe TopPay password recovery guidance, open the reset option from the main login page and protect your password, OTP and MPIN during recovery.',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      '@id': `${domain}/toppay-password-help.html#faq`,
-      url: `${domain}/toppay-password-help.html`,
-      name: 'TopPay Password Help',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'How do I reset my TopPay password?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Open the main TopPay login page and use its Forget Password option, then follow the recovery instructions shown there.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'Should I share my TopPay OTP or MPIN for password recovery?',
-          acceptedAnswer: { '@type': 'Answer', text: 'No. Never share your password, OTP or MPIN with another person or an unverified support contact.' },
-        },
-      ],
-    },
-    body: `
-      <h1>TopPay Password Help</h1>
-      <p>If you cannot sign in, open the main <a href="/">TopPay login</a> and use the <strong>Forget Password</strong> option shown on that page. Follow only the recovery instructions opened from the login screen.</p>
-      <h2>Protect your account during recovery</h2>
-      <ul>
-        <li>Never send your current password, OTP or MPIN to another person.</li>
-        <li>Check the website address before entering recovery information.</li>
-        <li>Create a password that is not reused on another website.</li>
-        <li>After recovery, sign in again from the main web-toppay.in login.</li>
-      </ul>
-      <h2>If recovery is unavailable</h2>
-      <p>Do not create repeated requests or trust an unknown contact claiming to reset the account manually. Review the <a href="/toppay-support.html">TopPay support guide</a> for safe next steps.</p>
-      <p class="notice">This guide never asks for or stores a password. Password recovery remains part of the existing TopPay login workflow.</p>
-    `,
-  },
-];
-
-const pageEnhancements = {
-  'about-toppay.html': {
-    queries: ['TopPay', 'Toppay', 'Top pay', 'TopPay login'],
-    summary: 'TopPay is a mobile-friendly web account experience. Use this site for the TopPay login and review only the tools and instructions displayed inside your own account.',
-    audience: 'New or returning users who want to confirm what TopPay is, where to sign in and which help pages match their task.',
-    keyPoints: [
-      'The primary account entry point is https://web-toppay.in/.',
-      'TopPay, Toppay and Top pay are treated as spelling variants of the same topic on this site.',
-      'Account features can differ, so the signed-in dashboard is the current source for available options.',
-    ],
-    questions: [
-      ['Is TopPay a mobile app or a website?', 'The account experience on this domain is a responsive web app that works in a mobile browser.'],
-      ['Where should I start?', 'Open the main TopPay login, confirm the domain and use the help guide that matches your task.'],
-    ],
-  },
-  'toppay-apk.html': {
-    queries: ['TopPay app', 'TopPay APK', 'Top pay app', 'TopPay login'],
-    summary: 'Use the TopPay mobile web login on web-toppay.in. This site does not publish a direct APK file, so avoid downloads from unverified pages, messages or social posts.',
-    audience: 'People searching for TopPay app access, TopPay APK information or the correct mobile login.',
-    keyPoints: [
-      'The browser-based TopPay app does not require an APK from this page.',
-      'Verify the complete domain before entering a phone number or password.',
-      'Unknown APK files can request unnecessary permissions or expose account information.',
-    ],
-    questions: [
-      ['Can I download a TopPay APK here?', 'No. This page provides safe access guidance and links to the mobile-friendly web login.'],
-      ['How do I use TopPay on Android?', 'Open web-toppay.in in a current mobile browser and sign in through the displayed login form.'],
-    ],
-  },
-  'toppay-support.html': {
-    queries: ['TopPay support', 'TopPay login help', 'TopPay password'],
-    summary: 'Start with the exact problem shown on your screen, use the existing recovery option for login issues and verify transaction details inside your own dashboard.',
-    audience: 'Users who need login, password, app-access, deposit or USDT transaction guidance.',
-    keyPoints: [
-      'Never share a password, OTP or MPIN with an unknown support contact.',
-      'For transaction questions, record the network, amount, time and transaction reference shown in the account.',
-      'Avoid repeated payments or recovery attempts until the previous status is understood.',
-    ],
-    questions: [
-      ['What information should I check before asking for help?', 'Check the exact error, transaction status, network and time while keeping private credentials secret.'],
-      ['Does this page ask for my password?', 'No. The public support guide does not collect account credentials.'],
-    ],
-  },
-  'toppay-usdt.html': {
-    queries: ['TopPay USDT', 'TopPay USDT deposit', 'TopPay USDT withdrawal'],
-    summary: 'For TopPay USDT actions, match the network, verify the complete wallet address and wait for the required confirmations before attempting another transfer.',
-    audience: 'Users researching TopPay USDT deposits, withdrawals, network selection or transaction-status checks.',
-    keyPoints: [
-      'The sending and receiving USDT networks must match exactly.',
-      'Compare the full destination address, not only its first and last characters.',
-      'Network confirmation time is separate from the account status shown in TopPay.',
-    ],
-    questions: [
-      ['Why is a TopPay USDT transaction pending?', 'Network activity, confirmation requirements or account review can affect status; check both the blockchain reference and dashboard.'],
-      ['Should I send a second transaction?', 'Do not repeat a transfer until the first transaction reference and current account status have been verified.'],
-    ],
-  },
-  'toppay-guide.html': {
-    queries: ['TopPay', 'Toppay', 'Top pay', 'TopPay login', 'TopPay app', 'TopPay APK', 'TopPay USDT', 'TopPay password'],
-    summary: 'Choose one task-focused TopPay guide: login and password help, mobile app access, general deposits or USDT network checks.',
-    audience: 'Anyone who wants a single directory for the available TopPay help and account-access pages.',
-    keyPoints: [
-      'Use the login guide for access and recovery questions.',
-      'Use the app/APK guide to identify the browser-based mobile experience.',
-      'Use the USDT guides before selecting a network or confirming an address.',
-    ],
-    questions: [
-      ['Which TopPay guide should I read first?', 'Start with the guide matching your immediate task; the login page remains the account entry point.'],
-      ['Are these pages part of the login workflow?', 'They are public supporting guides and do not change the existing login or dashboard workflow.'],
-    ],
-  },
-  'how-to-use-toppay.html': {
-    queries: ['How to use TopPay', 'TopPay login', 'TopPay app'],
-    summary: 'Open the correct TopPay login, sign in with your own account details and follow the current labels and instructions displayed in the dashboard.',
-    audience: 'First-time users who need a simple orientation to TopPay login, navigation and account help.',
-    keyPoints: [
-      'Confirm web-toppay.in before entering account details.',
-      'Use only features that are currently visible and enabled in your dashboard.',
-      'Use password recovery from the login screen when account access fails.',
-    ],
-    questions: [
-      ['What do I need to use TopPay?', 'Use the phone number and password associated with your own account on the main login page.'],
-      ['Why can my dashboard look different?', 'Available tools and labels can vary by account or current platform configuration.'],
-    ],
-  },
-  'how-to-deposit-toppay.html': {
-    queries: ['How to deposit in TopPay', 'TopPay deposit', 'TopPay login'],
-    summary: 'Use a deposit option only when it is visible in your signed-in TopPay account, then verify the method, amount and recipient details before confirming.',
-    audience: 'Users who want a general checklist before using an available TopPay deposit option.',
-    keyPoints: [
-      'Read the current instructions inside the account rather than an old screenshot.',
-      'Verify the amount, recipient and payment reference before taking action.',
-      'Check the first transaction status before attempting another payment.',
-    ],
-    questions: [
-      ['Why can deposit instructions change?', 'Availability and displayed payment details can vary, so use the current signed-in screen as the source.'],
-      ['Where can I find USDT-specific checks?', 'Use the dedicated TopPay USDT deposit and network guide before a crypto transfer.'],
-    ],
-  },
-  'how-to-deposit-usdt-toppay.html': {
-    queries: ['How to deposit USDT in TopPay', 'TopPay USDT deposit', 'TopPay USDT'],
-    summary: 'Before a TopPay USDT deposit, match the supported network, verify the complete address and retain the transaction reference until the account status updates.',
-    audience: 'Users preparing a USDT deposit through an option displayed in their TopPay account.',
-    keyPoints: [
-      'Network mismatch can cause permanent loss, so compare network names carefully.',
-      'Verify the current address shown in the signed-in account for every deposit.',
-      'Wait for confirmations and status updates before retrying a transfer.',
-    ],
-    questions: [
-      ['Can I reuse an old TopPay deposit address?', 'Use only the current address and network displayed in your own account at the time of the deposit.'],
-      ['What should I save after sending USDT?', 'Retain the transaction hash, selected network, amount and time without sharing private wallet credentials.'],
-    ],
-  },
-  'toppay-password-help.html': {
-    queries: ['TopPay password', 'TopPay password reset', 'TopPay login help'],
-    summary: 'Open password recovery from the main TopPay login, follow the displayed recovery flow and never share a password, OTP or MPIN with another person.',
-    audience: 'Users who forgot a TopPay password, cannot sign in or want safer account-recovery guidance.',
-    keyPoints: [
-      'Start recovery from the Forget Password link on the main login screen.',
-      'Keep passwords, OTPs and MPINs private during every support interaction.',
-      'After recovery, return to web-toppay.in and sign in again.',
-    ],
-    questions: [
-      ['Can support ask for my current password?', 'No. Do not send your current password, OTP or MPIN to another person.'],
-      ['What if recovery does not complete?', 'Stop repeated attempts, verify the exact error and use the public support guidance for the next safe step.'],
-    ],
-  },
-};
-
-function enhancementHtml(page) {
-  const item = pageEnhancements[page.filename];
-  if (!item) return '';
-  return `
-      <section class="answer-card" aria-labelledby="quick-answer">
-        <p class="eyebrow">Quick answer</p>
-        <h2 id="quick-answer">${page.body.match(/<h1>(.*?)<\/h1>/)?.[1] || page.title}</h2>
-        <p>${item.summary}</p>
-      </section>
-      <section>
-        <h2>Who is this guide for?</h2>
-        <p>${item.audience}</p>
-        <div class="topic-box" aria-labelledby="topics-covered">
-          <h2 id="topics-covered">Search topics covered</h2>
-          <p>This guide directly covers these related TopPay searches:</p>
-          <ul class="topic-list">${item.queries.map((query) => `<li>${query}</li>`).join('')}</ul>
-        </div>
-        <h2>Key checks</h2>
-        <ul>${item.keyPoints.map((point) => `<li>${point}</li>`).join('')}</ul>
-      </section>
-      <section class="faq" aria-labelledby="common-questions">
-        <h2 id="common-questions">Common questions</h2>
-        ${item.questions.map(([question, answer]) => `<h3>${question}</h3><p>${answer}</p>`).join('')}
-      </section>`;
+function attr(value) {
+  return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-const styles = `
-      :root { color-scheme: light; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; --navy: #1f2d7a; --blue: #2563eb; --red: #f43f4f; --ink: #111827; --muted: #64748b; --line: #e5e7eb; --wash: #f6f8fc; --sky: #ecf9ff; }
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body { margin: 0; background: #fff; color: #334155; line-height: 1.7; }
-      a { color: var(--blue); text-underline-offset: 3px; }
-      h1, h2, h3 { color: var(--ink); line-height: 1.18; letter-spacing: -.025em; }
-      h1 { margin: .45rem 0 0; font-size: clamp(2rem, 7vw, 3.9rem); }
-      h2 { margin: 2rem 0 .7rem; font-size: clamp(1.45rem, 4vw, 2rem); }
-      h3 { margin: 1.25rem 0 .35rem; }
-      p { margin: .65rem 0; }
-      .site-header { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid rgba(226,232,240,.9); background: rgba(255,255,255,.94); backdrop-filter: blur(14px); }
-      .header-inner { width: min(1180px, calc(100% - 32px)); min-height: 76px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-      .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 800; text-decoration: none; font-size: 1.12rem; }
-      .brand-mark { width: 38px; height: 38px; display: block; border-radius: 11px; object-fit: contain; background: var(--navy); box-shadow: 0 8px 20px rgba(31,45,122,.22); }
-      .header-nav { display: flex; align-items: center; justify-content: center; gap: 17px; }
-      .header-nav a { color: #475569; font-size: .9rem; text-decoration: none; white-space: nowrap; }
-      .header-actions { display: flex; align-items: center; gap: 10px; }
-      .button { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; font-weight: 780; text-decoration: none; white-space: nowrap; }
-      .register-link { color: #fff; border-color: var(--red); background: var(--red); box-shadow: 0 10px 22px rgba(244,63,79,.2); }
-      .login-link, .hero-login { color: #fff; border-color: var(--blue); background: var(--blue); box-shadow: 0 10px 22px rgba(37,99,235,.24); }
-      main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
-      .hero { margin: 28px 0; padding: clamp(26px, 6vw, 64px); border: 1px solid #dbeafe; border-radius: 30px; background: radial-gradient(circle at 92% 12%, #dff7ff 0, transparent 34%), linear-gradient(135deg, #fff 0%, #f7f5ff 48%, #eefbff 100%); box-shadow: 0 24px 60px rgba(30,41,59,.08); }
-      .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); align-items: center; gap: clamp(28px, 6vw, 72px); }
-      .breadcrumb { color: var(--muted); font-size: .9rem; }
-      .breadcrumb a { color: var(--navy); font-weight: 700; text-decoration: none; }
-      .title-row { margin-top: 18px; }
-      .title-copy { max-width: 720px; }
-      .eyebrow { margin: 0; color: var(--navy); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-      .rate-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 1px solid #dbeafe; border-radius: 999px; background: rgba(255,255,255,.84); color: #475569; font-size: .84rem; }
-      .rate-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
-      .hero-description { max-width: 690px; margin-top: 18px; color: #526174; font-size: 1.08rem; }
-      .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 24px; }
-      .telegram-link { color: var(--navy); background: #fff; }
-      .trust-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
-      .trust-chip { padding: 7px 11px; border: 1px solid #dbe3ee; border-radius: 999px; background: rgba(255,255,255,.82); color: #334155; font-size: .8rem; font-weight: 650; }
-      .hero-logo-card { min-height: 320px; display: grid; place-items: center; padding: 30px; border: 1px solid rgba(219,234,254,.95); border-radius: 28px; background: rgba(255,255,255,.88); box-shadow: 0 22px 52px rgba(31,45,122,.12); text-align: center; }
-      .hero-logo-card img { width: min(190px, 70%); height: auto; aspect-ratio: 1; object-fit: contain; filter: drop-shadow(0 18px 26px rgba(31,45,122,.18)); }
-      .hero-logo-card strong { display: block; margin-top: 15px; color: var(--navy); font-size: 1.2rem; }
-      .hero-logo-card span { color: var(--muted); font-size: .88rem; }
-      .content-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(260px, .75fr); gap: 24px; align-items: start; }
-      .content-panel, .answer-card, .faq, .side-card, .calculator-card { border: 1px solid var(--line); border-radius: 22px; background: #fff; box-shadow: 0 14px 40px rgba(15,23,42,.055); }
-      .content-panel { padding: clamp(22px, 4vw, 40px); }
-      .content-panel > p:first-child { margin-top: 0; font-size: 1.08rem; color: #475569; }
-      .content-panel ul, .content-panel ol { padding-left: 1.35rem; }
-      .content-panel li + li { margin-top: .6rem; }
-      .content-panel li::marker { color: var(--red); font-weight: 800; }
-      .notice { margin-top: 1.5rem; padding: 15px 17px; border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; background: #eff6ff; }
-      .side-stack { display: grid; gap: 18px; }
-      .side-card { padding: 22px; background: linear-gradient(145deg, #f8fbff, #fff); }
-      .side-card h2 { margin-top: 0; font-size: 1.25rem; }
-      .side-card a { display: block; padding: 9px 0; border-bottom: 1px solid #edf2f7; font-weight: 650; text-decoration: none; }
-      .side-card a:last-child { border-bottom: 0; }
-      .answer-card, .faq { margin: 24px 0; padding: clamp(22px, 4vw, 36px); }
-      .answer-card { border-color: #c7e8ff; background: linear-gradient(135deg, #eef9ff, #fff); }
-      .answer-card h2 { margin: .25rem 0 .6rem; }
-      .faq h3 { padding: 18px 20px 8px; margin: 14px 0 0; border: 1px solid var(--line); border-bottom: 0; border-radius: 15px 15px 0 0; background: #fff; }
-      .faq h3 + p { margin: 0; padding: 0 20px 18px; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 15px 15px; color: #526174; }
-      .topic-box { margin: 24px 0; padding: 20px; border: 1px solid #dbeafe; border-radius: 18px; background: #f8fbff; }
-      .topic-box h2 { margin-top: 0; }
-      .topic-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 14px 0 0; padding: 0 !important; list-style: none; }
-      .topic-list li { margin: 0 !important; padding: 7px 11px; border: 1px solid #cbdcf5; border-radius: 999px; background: #fff; color: var(--navy); font-size: .88rem; font-weight: 700; }
-      .guide-nav { margin: 28px 0; padding: clamp(22px, 4vw, 34px); border-radius: 24px; background: var(--wash); }
-      .guide-nav h2 { margin-top: 0; }
-      .link-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .link-grid a { min-height: 70px; display: flex; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: #fff; color: var(--navy); font-weight: 750; text-decoration: none; }
-      .calculator-card { margin: 0 0 28px; padding: clamp(22px, 4vw, 34px); }
-      .calc-head { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
-      .calc-head h2 { margin: 0; }
-      .rate-badge { padding: 7px 12px; border-radius: 999px; color: #b42331; background: #fff0f2; font-weight: 800; }
-      .calc-boxes { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; margin-top: 20px; }
-      .calc-box { padding: 18px; border-radius: 18px; background: #f6f8fb; }
-      .calc-box label { display: block; color: var(--muted); font-size: .84rem; }
-      .calc-box input { width: 100%; margin-top: 5px; border: 0; outline: 0; background: transparent; color: var(--ink); font-family: inherit; font-size: 1.7rem; font-weight: 800; line-height: 1.2; }
-      .calc-output { display: block; margin-top: 5px; color: var(--red); font-size: 1.7rem; font-weight: 850; }
-      .calc-arrow { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--navy); }
-      .range-row { display: grid; grid-template-columns: 1fr 150px; gap: 16px; margin-top: 18px; }
-      .range-row input[type="range"] { accent-color: var(--navy); }
-      .rate-field { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; }
-      .rate-field input { width: 75px; border: 0; outline: 0; font-weight: 800; }
-      .calc-note { margin-top: 14px; color: var(--muted); font-size: .86rem; }
-      .site-footer { margin-top: 50px; padding: 34px 0; color: #dbeafe; background: var(--navy); }
-      .footer-inner { width: min(1120px, calc(100% - 32px)); margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-      .site-footer strong { color: #fff; }
-      .site-footer a { color: #fff; }
-      @media (max-width: 1040px) { .header-nav { display: none; } }
-      @media (max-width: 820px) { .hero-grid, .content-grid { grid-template-columns: 1fr; } .hero-logo-card { min-height: 250px; } .link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-      @media (max-width: 560px) { .header-inner { min-height: 66px; } .brand span:last-child { display: none; } .header-actions .register-link { display: none; } .button { padding: 9px 14px; } .hero { margin: 16px 0; border-radius: 22px; } .hero-login, .hero-actions .register-link, .telegram-link { flex: 1 1 100%; } .hero-logo-card { min-height: 220px; } .hero-logo-card img { width: 140px; } .calc-boxes { grid-template-columns: 1fr; } .calc-arrow { margin: -4px auto; transform: rotate(90deg); } .range-row, .link-grid { grid-template-columns: 1fr; } .footer-inner { align-items: flex-start; flex-direction: column; } }
-`;
+const today = new Date().toISOString().slice(0, 10);
+const allPages = [...pages, ...legalPages];
+
+/* ------------------------------------------------------------------ *
+ *  Shared blocks
+ * ------------------------------------------------------------------ */
 
 const guideNavigation = `
       <nav class="guide-nav" id="guide-list" aria-label="TopPay guide navigation">
         <p class="eyebrow">Explore TopPay</p>
         <h2>Related TopPay guides</h2>
         <div class="link-grid">
-          <a href="/toppay-guide.html">All TopPay Guides</a>
-          <a href="/about-toppay.html">About TopPay</a>
-          <a href="/toppay-apk.html">TopPay App &amp; APK</a>
-          <a href="/toppay-usdt.html">TopPay USDT</a>
-          <a href="/how-to-use-toppay.html">How to Use TopPay</a>
-          <a href="/how-to-deposit-toppay.html">TopPay Deposit Guide</a>
+          <a href="/toppay-guide.html">All Toppay Guides</a>
+          <a href="/about-toppay.html">About Toppay</a>
+          <a href="/toppay-real-or-fake.html">Toppay Real or Fake</a>
+          <a href="/toppay-app-download.html">Toppay App Download</a>
+          <a href="/toppay-apk.html">Toppay APK Guide</a>
+          <a href="/toppay-usdt.html">Toppay USDT</a>
+          <a href="/usdt-to-inr.html">USDT to INR</a>
+          <a href="/how-to-use-toppay.html">How to Use Toppay</a>
+          <a href="/how-to-deposit-toppay.html">Toppay Deposit Guide</a>
           <a href="/how-to-deposit-usdt-toppay.html">USDT Deposit Guide</a>
+          <a href="/toppay-withdrawal.html">Toppay Withdrawal</a>
           <a href="/toppay-password-help.html">Password Help</a>
-          <a href="/toppay-support.html">TopPay Support</a>
+          <a href="/toppay-support.html">Toppay Support</a>
+          <a href="/toppay-customer-care.html">Customer Care</a>
+          <a href="/toppay-hindi.html">हिंदी गाइड</a>
         </div>
       </nav>`;
 
+const siteFooter = `
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <strong>TopPay</strong><br />
+          Official Toppay login, app access and USDT guides for web-toppay.in.
+        </div>
+        <div>
+          <a href="/toppay-guide.html">Guides</a> &middot;
+          <a href="/about-toppay.html">About</a> &middot;
+          <a href="/toppay-customer-care.html">Contact</a> &middot;
+          <a href="/toppay-support.html">Support</a> &middot;
+          <a href="/">Login</a>
+          <br />
+          <a href="/privacy-policy.html">Privacy Policy</a> &middot;
+          <a href="/terms-and-conditions.html">Terms</a> &middot;
+          <a href="/refund-policy.html">Refund Policy</a> &middot;
+          <a href="/disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+    </footer>`;
+
+/* calculator markup + behaviour (unchanged design) */
 function calculatorHtml(page) {
-  if (page.filename !== 'toppay-usdt.html') return '';
+  if (!page.calculator) return '';
   return `
       <section class="calculator-card" aria-labelledby="usdt-calculator-title">
         <div class="calc-head">
           <div><p class="eyebrow">USDT estimate</p><h2 id="usdt-calculator-title">USDT to INR Calculator</h2></div>
-          <span class="rate-badge" id="rateBadge">₹112 / USDT</span>
+          <span class="rate-badge" id="rateBadge">&#8377;112 / USDT</span>
         </div>
         <div class="calc-boxes">
           <div class="calc-box"><label for="usdtAmount">You enter (USDT)</label><input id="usdtAmount" type="number" min="1" step="1" value="1000" inputmode="decimal" /></div>
-          <span class="calc-arrow" aria-hidden="true">↓</span>
-          <div class="calc-box"><span>Estimated INR</span><output class="calc-output" id="inrOutput" for="usdtAmount inrRate">₹1,12,000</output></div>
+          <span class="calc-arrow" aria-hidden="true">&darr;</span>
+          <div class="calc-box"><span>Estimated INR</span><output class="calc-output" id="inrOutput" for="usdtAmount inrRate">&#8377;1,12,000</output></div>
         </div>
         <div class="range-row">
           <input id="usdtRange" type="range" min="1" max="5000" step="1" value="1000" aria-label="USDT amount" />
-          <label class="rate-field" for="inrRate">₹ <input id="inrRate" type="number" min="0.01" step="0.01" value="112" inputmode="decimal" /> rate</label>
+          <label class="rate-field" for="inrRate">&#8377; <input id="inrRate" type="number" min="0.01" step="0.01" value="112" inputmode="decimal" /> rate</label>
         </div>
         <p class="calc-note">यह केवल अनुमान है। Transaction से पहले अपने signed-in TopPay dashboard में दिख रहे current rate, fees और final amount को verify करें।</p>
       </section>`;
@@ -653,119 +124,274 @@ const calculatorScript = `
           const total = Math.max(0, Number(amount.value) || 0) * Math.max(0, Number(rate.value) || 0);
           output.value = formatInr.format(total);
           output.textContent = formatInr.format(total);
-          badge.textContent = '₹' + (Number(rate.value) || 0).toLocaleString('en-IN') + ' / USDT';
+          badge.textContent = '\\u20B9' + (Number(rate.value) || 0).toLocaleString('en-IN') + ' / USDT';
         };
         [amount, range, rate].forEach((control) => control.addEventListener('input', () => update(control)));
         update(amount);
       })();
     </script>`;
 
-for (const page of pages) {
+function quickBlockHtml(page) {
+  const item = page.quick;
+  if (!item || page.noQuick) return '';
+  const heading = page.body.match(/<h1>(.*?)<\/h1>/)?.[1] || page.title;
+  return `
+      <section class="answer-card" aria-labelledby="quick-answer">
+        <p class="eyebrow">Quick answer</p>
+        <h2 id="quick-answer">${heading}</h2>
+        <p>${item.summary}</p>
+      </section>
+      <section>
+        <h2>Who is this guide for?</h2>
+        <p>${item.audience}</p>
+        <div class="topic-box" aria-labelledby="topics-covered">
+          <h2 id="topics-covered">Search topics covered</h2>
+          <p>This guide directly covers these related Toppay searches:</p>
+          <ul class="topic-list">${item.queries.map((query) => `<li>${query}</li>`).join('')}</ul>
+        </div>
+        <h2>Key checks</h2>
+        <ul>${item.keyPoints.map((point) => `<li>${point}</li>`).join('')}</ul>
+      </section>
+      <section class="faq" aria-labelledby="common-questions">
+        <h2 id="common-questions">Common questions</h2>
+        ${item.questions.map(([question, answer]) => `<h3>${question}</h3><p>${answer}</p>`).join('')}
+      </section>`;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Page renderer
+ * ------------------------------------------------------------------ */
+
+function renderPage(page) {
   const canonical = `${domain}/${page.filename}`;
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'TopPay Login', item: `${domain}/` },
-      { '@type': 'ListItem', position: 2, name: page.title.split('|')[0].trim(), item: canonical },
-    ],
-  };
-  const pageHeading = page.body.match(/<h1>(.*?)<\/h1>/)?.[1] || page.title.split('|')[0].trim();
-  const pageBody = page.body.replace(/<h1>.*?<\/h1>/, '').trim();
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: (pageEnhancements[page.filename]?.questions || []).map(([question, answer]) => ({
-      '@type': 'Question',
-      name: question,
-      acceptedAnswer: { '@type': 'Answer', text: answer },
-    })),
-  };
-  const pageSchema = {
-    ...page.schema,
-    keywords: (pageEnhancements[page.filename]?.queries || []).join(', '),
-  };
-  const html = `<!doctype html>
-<html lang="en">
+  const lang = page.lang || 'en';
+  const heading = page.body.match(/<h1>(.*?)<\/h1>/)?.[1] || page.title.split('|')[0].trim();
+  const bodyWithoutH1 = page.body.replace(/<h1>.*?<\/h1>/, '').trim();
+  const shortTitle = page.title.split('|')[0].trim();
+
+  /* ---- JSON-LD: one @graph, one FAQPage max, consistent @id domain ---- */
+  const graph = [
+    websiteNode,
+    organizationNode,
+    {
+      '@type': page.schemaType === 'FAQPage' ? 'WebPage' : page.schemaType || 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: shortTitle,
+      headline: heading,
+      description: page.description,
+      inLanguage: lang === 'hi' ? 'hi-IN' : 'en-IN',
+      isPartOf: { '@id': `${domain}/#website` },
+      about: { '@id': `${domain}/#organization` },
+      publisher: { '@id': `${domain}/#organization` },
+      primaryImageOfPage: { '@id': `${domain}/#logo` },
+      datePublished: '2026-08-01',
+      dateModified: today,
+      keywords: (page.keywords || []).join(', '),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Toppay Login', item: `${domain}/` },
+        { '@type': 'ListItem', position: 2, name: 'Toppay Guides', item: `${domain}/toppay-guide.html` },
+        { '@type': 'ListItem', position: 3, name: shortTitle, item: canonical },
+      ],
+    },
+  ];
+
+  // Exactly one FAQPage per page (duplicate FAQPage blocks were invalid before).
+  const questions = page.quick?.questions || [];
+  if (questions.length && !page.noQuick) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      inLanguage: lang === 'hi' ? 'hi-IN' : 'en-IN',
+      isPartOf: { '@id': `${canonical}#webpage` },
+      mainEntity: questions.map(([question, answer]) => ({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      })),
+    });
+  }
+
+  const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+
+  return `<!doctype html>
+<html lang="${lang === 'hi' ? 'hi-IN' : 'en-IN'}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${page.title}</title>
-    <meta name="description" content="${page.description}" />
+    <title>${attr(page.title)}</title>
+    <meta name="description" content="${attr(page.description)}" />
+    <meta name="keywords" content="${attr((page.keywords || []).join(', '))}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="author" content="TopPay" />
     <link rel="canonical" href="${canonical}" />
+    <link rel="alternate" hreflang="en-IN" href="${canonical}" />
+    <link rel="alternate" hreflang="x-default" href="${canonical}" />
     <link rel="icon" type="image/svg+xml" href="/toppay-logo.svg" />
-    <meta property="og:type" content="website" />
+    <link rel="apple-touch-icon" href="/toppay-logo.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1f2d7a" />
+    <meta property="og:type" content="article" />
     <meta property="og:site_name" content="TopPay" />
-    <meta property="og:title" content="${page.title}" />
-    <meta property="og:description" content="${page.description}" />
+    <meta property="og:locale" content="${lang === 'hi' ? 'hi_IN' : 'en_IN'}" />
+    <meta property="og:title" content="${attr(page.title)}" />
+    <meta property="og:description" content="${attr(page.description)}" />
     <meta property="og:url" content="${canonical}" />
     <meta property="og:image" content="${socialImage}" />
-    <meta property="og:image:alt" content="TopPay logo" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="${page.title}" />
-    <meta name="twitter:description" content="${page.description}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Toppay official logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${attr(page.title)}" />
+    <meta name="twitter:description" content="${attr(page.description)}" />
     <meta name="twitter:image" content="${socialImage}" />
-    <script type="application/ld+json">${JSON.stringify(pageSchema)}</script>
-    <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
-    <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
+    <script type="application/ld+json">${jsonLd}</script>
     <style>${styles}</style>
   </head>
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="/toppay-guide.html" aria-label="TopPay Guides"><img class="brand-mark" src="/toppay-logo.svg" width="38" height="38" alt="TopPay logo" /><span>TopPay</span></a>
+        <a class="brand" href="/toppay-guide.html" aria-label="Toppay Guides"><img class="brand-mark" src="/toppay-logo.svg" width="38" height="38" alt="Toppay official logo" /><span>TopPay</span></a>
         <nav class="header-nav" aria-label="Primary navigation">
-          <a href="/toppay-guide.html">Home</a><a href="/toppay-usdt.html#usdt-calculator-title">Exchange</a><a href="/about-toppay.html">About</a><a href="/toppay-guide.html#guide-list">Blog</a><a href="#common-questions">FAQ</a><a href="/toppay-support.html">Contact</a><a href="/">Login</a>
+          <a href="/toppay-guide.html">Home</a><a href="/usdt-to-inr.html">Exchange</a><a href="/about-toppay.html">About</a><a href="/toppay-guide.html#guide-list">Guides</a><a href="#common-questions">FAQ</a><a href="/toppay-customer-care.html">Contact</a><a href="/">Login</a>
         </nav>
-        <div class="header-actions"><a class="button register-link" href="https://app-web.toppay-web.com/regist?code=2invite5p6">Register Now</a><a class="button login-link" href="/">TopPay Login</a></div>
+        <div class="header-actions"><a class="button register-link" href="${registerUrl}" rel="noopener nofollow">Register Now</a><a class="button login-link" href="/">Toppay Login</a></div>
       </div>
     </header>
     <main>
       <section class="hero">
         <div class="hero-grid">
           <div>
-            <span class="rate-pill"><span class="rate-dot" aria-hidden="true"></span>Displayed rate · 1 USDT = ₹112</span>
-            <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/toppay-guide.html">TopPay Guides</a> / ${page.title.split('|')[0].trim()}</nav>
-            <div class="title-row"><div class="title-copy"><p class="eyebrow">TopPay · USDT to INR</p><h1>${pageHeading}</h1></div></div>
+            <span class="rate-pill"><span class="rate-dot" aria-hidden="true"></span>Displayed rate &middot; 1 USDT = &#8377;112</span>
+            <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/toppay-guide.html">Toppay Guides</a> / ${shortTitle}</nav>
+            <div class="title-row"><div class="title-copy"><p class="eyebrow">${page.heroEyebrow || 'TopPay'}</p><h1>${heading}</h1></div></div>
             <p class="hero-description">${page.description}</p>
-            <div class="hero-actions"><a class="button register-link" href="https://app-web.toppay-web.com/regist?code=2invite5p6">Register Now</a><a class="button hero-login" href="/">TopPay Login</a><a class="button telegram-link" href="https://t.me/toppayofficial00" rel="noopener noreferrer">Join Telegram</a></div>
-            <div class="trust-chips" aria-label="TopPay highlights"><span class="trust-chip">Instant Exchange</span><span class="trust-chip">Secure Transactions</span><span class="trust-chip">24/7 Support</span><span class="trust-chip">Risk &amp; Safety Checks</span></div>
+            <div class="hero-actions"><a class="button register-link" href="${registerUrl}" rel="noopener nofollow">Register Now</a><a class="button hero-login" href="/">Toppay Login</a><a class="button telegram-link" href="${telegramUrl}" rel="noopener noreferrer nofollow">Join Telegram</a></div>
+            <div class="trust-chips" aria-label="Toppay highlights"><span class="trust-chip">Official Toppay Login</span><span class="trust-chip">Secure Transactions</span><span class="trust-chip">USDT Guides</span><span class="trust-chip">Safety Checks</span></div>
           </div>
-          <div class="hero-logo-card"><div><img src="/toppay-logo.svg" width="190" height="190" alt="TopPay logo for ${pageHeading}" /><strong>${pageHeading}</strong><span>TopPay information and account guide</span></div></div>
+          <div class="hero-logo-card"><div><img src="/toppay-logo.svg" width="190" height="190" alt="Toppay logo &ndash; ${attr(heading)}" /><strong>${heading}</strong><span>Toppay official information and account guide</span></div></div>
         </div>
       </section>
 ${calculatorHtml(page)}
       <div class="content-grid">
         <article class="content-panel">
-${pageBody}
+${bodyWithoutH1}
+          <p class="calc-note">Last updated: ${today} &middot; Published by TopPay &middot; <a href="/disclaimer.html">Read the disclaimer</a></p>
         </article>
-        <aside class="side-stack" aria-label="TopPay quick links">
-          <section class="side-card"><p class="eyebrow">Quick access</p><h2>TopPay account help</h2><a href="/">Open TopPay Login</a><a href="/toppay-password-help.html">Password Help</a><a href="/toppay-support.html">Support Guide</a></section>
-          <section class="side-card"><p class="eyebrow">Safety check</p><h2>Before you continue</h2><p>Verify the complete web-toppay.in address and use only the current details displayed inside your own signed-in account.</p></section>
+        <aside class="side-stack" aria-label="Toppay quick links">
+          <section class="side-card"><p class="eyebrow">Quick access</p><h2>Toppay account help</h2><a href="/">Open Toppay Login</a><a href="/toppay-password-help.html">Password Help</a><a href="/toppay-customer-care.html">Customer Care</a><a href="/toppay-real-or-fake.html">Real or Fake?</a></section>
+          <section class="side-card"><p class="eyebrow">Safety check</p><h2>Before you continue</h2><p>Verify the complete <strong>web-toppay.in</strong> address, never install a Toppay APK sent by link, and never share your password, OTP or MPIN with anyone.</p></section>
         </aside>
       </div>
-${enhancementHtml(page)}
+${quickBlockHtml(page)}
 ${guideNavigation}
     </main>
-    <footer class="site-footer"><div class="footer-inner"><div><strong>TopPay</strong><br />Mobile-friendly account guides and secure access information.</div><div><a href="/toppay-guide.html">Guides</a> · <a href="/about-toppay.html">About</a> · <a href="/toppay-support.html">Support</a> · <a href="/">Login</a></div></div></footer>
-${page.filename === 'toppay-usdt.html' ? calculatorScript : ''}
+${siteFooter}
+${page.calculator ? calculatorScript : ''}
   </body>
 </html>
 `;
-
-  writeIfChanged(path.join(publicDir, page.filename), html);
 }
 
-const robots = `User-agent: *
+/* ------------------------------------------------------------------ *
+ *  Write everything
+ * ------------------------------------------------------------------ */
+
+let written = 0;
+for (const page of allPages) {
+  if (writeIfChanged(path.join(publicDir, page.filename), renderPage(page))) written += 1;
+}
+
+/* robots.txt --------------------------------------------------------- */
+const robots = `# https://www.web-toppay.in/robots.txt
+User-agent: *
+Allow: /
+
+# Private / duplicate routes
 Disallow: /admin
 Disallow: /admin-app/
-Allow: /
+Disallow: /user-app/
+Disallow: /portal.html
+Disallow: /404.html
+Disallow: /offline.html
+
+# Media and asset crawling is allowed
+Allow: /assets/
+Allow: /toppay-logo.svg
+Allow: /toppay-og.png
 
 Sitemap: ${domain}/sitemap.xml
 `;
-
 writeIfChanged(path.join(publicDir, 'robots.txt'), robots);
+
+/* manifest.json ------------------------------------------------------ */
+const manifest = {
+  name: 'TopPay — Toppay Official Login & App',
+  short_name: 'TopPay',
+  description: 'Official Toppay login, Toppay app access and Toppay USDT guides.',
+  start_url: '/',
+  scope: '/',
+  display: 'standalone',
+  orientation: 'portrait',
+  background_color: '#ffffff',
+  theme_color: '#1f2d7a',
+  lang: 'en-IN',
+  dir: 'ltr',
+  categories: ['finance', 'business'],
+  icons: [
+    { src: '/toppay-logo.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+    { src: '/toppay-logo.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+  ],
+};
+writeIfChanged(path.join(publicDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+
+/* 404.html — real 404 page instead of the old soft-404 stub ----------- */
+const notFound = `<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found (404) | TopPay</title>
+    <meta name="description" content="This Toppay page could not be found. Use the links below to reach the Toppay login, the guide hub or Toppay customer care." />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" type="image/svg+xml" href="/toppay-logo.svg" />
+    <style>${styles}</style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/toppay-guide.html" aria-label="Toppay Guides"><img class="brand-mark" src="/toppay-logo.svg" width="38" height="38" alt="Toppay logo" /><span>TopPay</span></a>
+        <div class="header-actions"><a class="button login-link" href="/">Toppay Login</a></div>
+      </div>
+    </header>
+    <main>
+      <div class="content-grid">
+        <article class="content-panel">
+          <h1>Page not found (404)</h1>
+          <p>The page you were looking for does not exist on <strong>web-toppay.in</strong>. It may have been moved, or the address may contain a typing error.</p>
+          <h2>Where to go next</h2>
+          <ul>
+            <li><a href="/">Toppay login</a></li>
+            <li><a href="/toppay-guide.html">All Toppay guides</a></li>
+            <li><a href="/toppay-app-download.html">Toppay app download</a></li>
+            <li><a href="/toppay-usdt.html">Toppay USDT guide</a></li>
+            <li><a href="/toppay-customer-care.html">Toppay customer care</a></li>
+          </ul>
+          <p>If you arrived here from a link someone sent you, verify the full address before entering any account details.</p>
+        </article>
+      </div>
+    </main>
+${siteFooter}
+  </body>
+</html>
+`;
+writeIfChanged(path.join(publicDir, '404.html'), notFound);
+
 require('./generate-sitemap.cjs');
 
-console.log('SEO pages, robots.txt and sitemap.xml generated successfully.');
+console.log(`SEO generator: ${allPages.length} pages rendered (${written} changed), robots.txt, manifest.json, 404.html and sitemap.xml written.`);

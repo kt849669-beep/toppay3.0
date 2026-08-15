@@ -1,13 +1,5 @@
-<!doctype html>
-<html lang="en-IN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Not Found (404) | TopPay</title>
-    <meta name="description" content="This Toppay page could not be found. Use the links below to reach the Toppay login, the guide hub or Toppay customer care." />
-    <meta name="robots" content="noindex, follow" />
-    <link rel="icon" type="image/svg+xml" href="/toppay-logo.svg" />
-    <style>
+/* Visual styles for the public TopPay SEO pages. Design unchanged. */
+const styles = `
       :root { color-scheme: light; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; --navy: #1f2d7a; --blue: #2563eb; --red: #f43f4f; --ink: #111827; --muted: #64748b; --line: #e5e7eb; --wash: #f6f8fc; --sky: #ecf9ff; }
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
@@ -95,52 +87,6 @@
       @media (max-width: 1040px) { .header-nav { display: none; } }
       @media (max-width: 820px) { .hero-grid, .content-grid { grid-template-columns: 1fr; } .hero-logo-card { min-height: 250px; } .link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
       @media (max-width: 560px) { .header-inner { min-height: 66px; } .brand span:last-child { display: none; } .header-actions .register-link { display: none; } .button { padding: 9px 14px; } .hero { margin: 16px 0; border-radius: 22px; } .hero-login, .hero-actions .register-link, .telegram-link { flex: 1 1 100%; } .hero-logo-card { min-height: 220px; } .hero-logo-card img { width: 140px; } .calc-boxes { grid-template-columns: 1fr; } .calc-arrow { margin: -4px auto; transform: rotate(90deg); } .range-row, .link-grid { grid-template-columns: 1fr; } .footer-inner { align-items: flex-start; flex-direction: column; } }
-</style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="brand" href="/toppay-guide.html" aria-label="Toppay Guides"><img class="brand-mark" src="/toppay-logo.svg" width="38" height="38" alt="Toppay logo" /><span>TopPay</span></a>
-        <div class="header-actions"><a class="button login-link" href="/">Toppay Login</a></div>
-      </div>
-    </header>
-    <main>
-      <div class="content-grid">
-        <article class="content-panel">
-          <h1>Page not found (404)</h1>
-          <p>The page you were looking for does not exist on <strong>web-toppay.in</strong>. It may have been moved, or the address may contain a typing error.</p>
-          <h2>Where to go next</h2>
-          <ul>
-            <li><a href="/">Toppay login</a></li>
-            <li><a href="/toppay-guide.html">All Toppay guides</a></li>
-            <li><a href="/toppay-app-download.html">Toppay app download</a></li>
-            <li><a href="/toppay-usdt.html">Toppay USDT guide</a></li>
-            <li><a href="/toppay-customer-care.html">Toppay customer care</a></li>
-          </ul>
-          <p>If you arrived here from a link someone sent you, verify the full address before entering any account details.</p>
-        </article>
-      </div>
-    </main>
+`;
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div>
-          <strong>TopPay</strong><br />
-          Official Toppay login, app access and USDT guides for web-toppay.in.
-        </div>
-        <div>
-          <a href="/toppay-guide.html">Guides</a> &middot;
-          <a href="/about-toppay.html">About</a> &middot;
-          <a href="/toppay-customer-care.html">Contact</a> &middot;
-          <a href="/toppay-support.html">Support</a> &middot;
-          <a href="/">Login</a>
-          <br />
-          <a href="/privacy-policy.html">Privacy Policy</a> &middot;
-          <a href="/terms-and-conditions.html">Terms</a> &middot;
-          <a href="/refund-policy.html">Refund Policy</a> &middot;
-          <a href="/disclaimer.html">Disclaimer</a>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
+module.exports = { styles };
