@@ -1,4 +1,4 @@
-import test from 'node:test';
+﻿import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   completedPeriods,
@@ -17,7 +17,7 @@ test('uses complete seven-day comparison windows', () => {
 });
 
 test('normalizes keyword casing and spaces', () => {
-  assert.equal(normalizeQuery('  ShowPay   Login '), 'showpay login');
+  assert.equal(normalizeQuery('  TopPay   Login '), 'toppay login');
 });
 
 test('calculates percentage changes safely', () => {
@@ -28,25 +28,25 @@ test('calculates percentage changes safely', () => {
 
 test('extracts essential SEO fields and internal links', () => {
   const html = `<!doctype html><html><head>
-    <title>ShowPay Login</title>
-    <meta name="description" content="A sufficiently descriptive and truthful description for the monitored ShowPay page.">
+    <title>TopPay Login</title>
+    <meta name="description" content="A sufficiently descriptive and truthful description for the monitored TopPay page.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://app-showpay.in/">
+    <link rel="canonical" href="https://web-toppay.in/">
     <script type="application/ld+json">{"@type":"WebSite"}</script>
-  </head><body><h1>ShowPay Login</h1><a href="/support.html">Support</a></body></html>`;
-  const result = inspectHtml(html, 'https://app-showpay.in/');
-  assert.equal(result.title, 'ShowPay Login');
-  assert.equal(result.canonical, 'https://app-showpay.in/');
-  assert.deepEqual(result.h1s, ['ShowPay Login']);
-  assert.deepEqual(result.links, ['https://app-showpay.in/support.html']);
+  </head><body><h1>TopPay Login</h1><a href="/support.html">Support</a></body></html>`;
+  const result = inspectHtml(html, 'https://web-toppay.in/');
+  assert.equal(result.title, 'TopPay Login');
+  assert.equal(result.canonical, 'https://web-toppay.in/');
+  assert.deepEqual(result.h1s, ['TopPay Login']);
+  assert.deepEqual(result.links, ['https://web-toppay.in/support.html']);
   assert.deepEqual(result.schemaErrors, []);
 });
 
 test('parses sitemap and robots directives', () => {
-  assert.deepEqual(parseSitemap('<urlset><url><loc>https://app-showpay.in/</loc></url></urlset>'), ['https://app-showpay.in/']);
-  assert.deepEqual(inspectRobots('User-agent: *\nAllow: /\nSitemap: https://app-showpay.in/sitemap.xml', 'https://app-showpay.in/'), {
-    sitemaps: ['https://app-showpay.in/sitemap.xml'],
+  assert.deepEqual(parseSitemap('<urlset><url><loc>https://web-toppay.in/</loc></url></urlset>'), ['https://web-toppay.in/']);
+  assert.deepEqual(inspectRobots('User-agent: *\nAllow: /\nSitemap: https://web-toppay.in/sitemap.xml', 'https://web-toppay.in/'), {
+    sitemaps: ['https://web-toppay.in/sitemap.xml'],
     declaresExpectedSitemap: true,
     blocksAll: false,
   });

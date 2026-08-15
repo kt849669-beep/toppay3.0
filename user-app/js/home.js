@@ -1,10 +1,10 @@
-// user-app/js/home.js
+﻿// user-app/js/home.js
 // Complete flow: Session → Load Data → MPIN → Success → Video → Telegram → Logout
 import { supabase } from "./config/supabase.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   // 1. Check Session
-  const sessionStr = sessionStorage.getItem("showpay_session");
+  const sessionStr = sessionStorage.getItem("toppay_session");
   if (!sessionStr) {
     window.location.href = "/login";
     return;
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ======================================
   function logout() {
     // Session Clear
-    sessionStorage.removeItem("showpay_session");
+    sessionStorage.removeItem("toppay_session");
     // Redirect to Login Page
     window.location.href = "../pages/login.html";
   }

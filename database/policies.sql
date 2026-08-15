@@ -1,5 +1,5 @@
--- ============================================
--- ShowPay 3.0 - Row Level Security Policies
+﻿-- ============================================
+-- TopPay 3.0 - Row Level Security Policies
 -- Run this AFTER schema.sql in Supabase SQL Editor
 -- ============================================
 -- Since we are NOT using Supabase Auth (using custom login),

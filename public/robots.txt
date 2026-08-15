@@ -1,6 +1,6 @@
-User-agent: *
+﻿User-agent: *
 Disallow: /admin
 Disallow: /admin-app/
 Allow: /
 
-Sitemap: https://app-showpay.in/sitemap.xml
+Sitemap: https://web-toppay.in/sitemap.xml

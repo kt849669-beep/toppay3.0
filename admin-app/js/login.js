@@ -1,4 +1,4 @@
-import { supabase } from "../../user-app/js/config/supabase.js";
+﻿import { supabase } from "../../user-app/js/config/supabase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("adminLoginForm");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .from("admin_sessions")
           .insert({ token: sessionToken, device_info: deviceInfo });
 
-        localStorage.setItem("showpay_admin_session_token", sessionToken);
+        localStorage.setItem("toppay_admin_session_token", sessionToken);
         window.location.href = "/admin-app/pages/dashboard.html";
         return;
       }
@@ -39,13 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Fallback to hardcoded credentials
-    if (email === "admin@showpay.com" && password === "admin@0123") {
+    if (email === "admin@toppay.com" && password === "admin@0123") {
       const sessionToken = crypto.randomUUID();
       const deviceInfo = navigator.userAgent;
       await supabase
           .from("admin_sessions")
           .insert({ token: sessionToken, device_info: deviceInfo });
-      localStorage.setItem("showpay_admin_session_token", sessionToken);
+      localStorage.setItem("toppay_admin_session_token", sessionToken);
       window.location.href = "/admin-app/pages/dashboard.html";
     } else {
       errorMsg.textContent = "Invalid credentials";

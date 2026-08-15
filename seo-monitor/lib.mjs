@@ -1,16 +1,16 @@
-import crypto from 'node:crypto';
+﻿import crypto from 'node:crypto';
 
-export const DEFAULT_SITE_URL = 'https://app-showpay.in/';
+export const DEFAULT_SITE_URL = 'https://web-toppay.in/';
 export const SEED_QUERIES = [
-  'showpay',
-  'showpay login',
-  'show pay',
-  'show pay login',
-  'showpay app',
-  'showpay apk',
+  'toppay',
+  'toppay login',
+  'top pay',
+  'top pay login',
+  'toppay app',
+  'toppay apk',
 ];
 
-const USER_AGENT = 'ShowPaySEOAgent/1.0 (+https://app-showpay.in/)';
+const USER_AGENT = 'TopPaySEOAgent/1.0 (+https://web-toppay.in/)';
 
 export function isoDate(date) {
   return date.toISOString().slice(0, 10);

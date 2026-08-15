@@ -1,7 +1,7 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
-const domain = 'https://app-showpay.in';
+const domain = 'https://web-toppay.in';
 const sitemapFile = path.join(__dirname, 'public', 'sitemap.xml');
 
 const urls = [
@@ -12,56 +12,56 @@ const urls = [
     priority: '1.0',
   },
   {
-    loc: `${domain}/about-showpay.html`,
-    source: path.join(__dirname, 'public', 'about-showpay.html'),
+    loc: `${domain}/about-toppay.html`,
+    source: path.join(__dirname, 'public', 'about-toppay.html'),
     changefreq: 'monthly',
     priority: '0.7',
   },
   {
-    loc: `${domain}/showpay-apk.html`,
-    source: path.join(__dirname, 'public', 'showpay-apk.html'),
+    loc: `${domain}/toppay-apk.html`,
+    source: path.join(__dirname, 'public', 'toppay-apk.html'),
     changefreq: 'monthly',
     priority: '0.8',
   },
   {
-    loc: `${domain}/showpay-support.html`,
-    source: path.join(__dirname, 'public', 'showpay-support.html'),
+    loc: `${domain}/toppay-support.html`,
+    source: path.join(__dirname, 'public', 'toppay-support.html'),
     changefreq: 'monthly',
     priority: '0.7',
   },
   {
-    loc: `${domain}/showpay-usdt.html`,
-    source: path.join(__dirname, 'public', 'showpay-usdt.html'),
+    loc: `${domain}/toppay-usdt.html`,
+    source: path.join(__dirname, 'public', 'toppay-usdt.html'),
     changefreq: 'monthly',
     priority: '0.7',
   },
   {
-    loc: `${domain}/showpay-guide.html`,
-    source: path.join(__dirname, 'public', 'showpay-guide.html'),
+    loc: `${domain}/toppay-guide.html`,
+    source: path.join(__dirname, 'public', 'toppay-guide.html'),
     changefreq: 'monthly',
     priority: '0.8',
   },
   {
-    loc: `${domain}/how-to-use-showpay.html`,
-    source: path.join(__dirname, 'public', 'how-to-use-showpay.html'),
+    loc: `${domain}/how-to-use-toppay.html`,
+    source: path.join(__dirname, 'public', 'how-to-use-toppay.html'),
     changefreq: 'monthly',
     priority: '0.8',
   },
   {
-    loc: `${domain}/how-to-deposit-showpay.html`,
-    source: path.join(__dirname, 'public', 'how-to-deposit-showpay.html'),
+    loc: `${domain}/how-to-deposit-toppay.html`,
+    source: path.join(__dirname, 'public', 'how-to-deposit-toppay.html'),
     changefreq: 'monthly',
     priority: '0.7',
   },
   {
-    loc: `${domain}/how-to-deposit-usdt-showpay.html`,
-    source: path.join(__dirname, 'public', 'how-to-deposit-usdt-showpay.html'),
+    loc: `${domain}/how-to-deposit-usdt-toppay.html`,
+    source: path.join(__dirname, 'public', 'how-to-deposit-usdt-toppay.html'),
     changefreq: 'monthly',
     priority: '0.7',
   },
   {
-    loc: `${domain}/showpay-password-help.html`,
-    source: path.join(__dirname, 'public', 'showpay-password-help.html'),
+    loc: `${domain}/toppay-password-help.html`,
+    source: path.join(__dirname, 'public', 'toppay-password-help.html'),
     changefreq: 'monthly',
     priority: '0.7',
   },

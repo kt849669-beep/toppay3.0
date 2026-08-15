@@ -1,9 +1,18 @@
-# ShowPay 3.0 - Current Project State & Memory
+# TopPay 3.0 - Current Project State & Memory
 
 This file serves as memory for AI agents. When a new conversation starts, read this to understand the current state.
 
-## Recent Updates (July 16, 2026)
-1. **SEO Optimization:** Updated meta tags and Open Graph data in `index.html` and other pages with exact casing for keywords ("Showpay", "Showpay login", "Showpay app", "Showpay apk"). GoDaddy `app-atgpay.in` domain was instructed to be unlinked to prioritize `app-showpay.in`.
+## Recent Updates (August 12, 2026)
+1. **Brand Rename & Domain Change:** 
+   - All "showpay" references replaced with "toppay" across entire project (~74 files + 11 files renamed).
+   - Domain changed from `app-showpay.in` → `app-toppay.in` → **`web-toppay.in`** (final). Updated in 25 files.
+   - "Show pay" alt-name replaced with "Top pay" everywhere.
+2. **SEO Keywords Updated:** All public HTML pages, schema JSON-LD, and meta tags now target exact Google Search keywords:
+   - **Target keywords:** `Toppay`, `Toppay login`, `Toppay app`, `Toppay apk`, `Toppay app download`, `Top pay`, `Toppay usdt`, `toppay real or fake`
+   - Added `<meta name="keywords">` to all public SEO pages (`public/*.html`) and user-app pages.
+   - Updated `keywords` field in all JSON-LD schema blocks.
+   - Updated `alternateName` arrays in Organization schema to include all keyword variants.
+   - "Show pay" completely removed from all content — replaced with "Top pay".
 2. **Admin Panel Mobile Responsiveness:**
    - The admin login page (`admin-app/pages/login.html`) was updated via `admin-app/css/responsive.css` to fit mobile screens perfectly without touching the edges.
    - Fixed an issue where the sidebar hamburger menu was not working on mobile because Vercel/Vite dropped `sidebar.js`. Fixed by adding `type="module"` to all `sidebar.js` script tags in admin HTML pages.

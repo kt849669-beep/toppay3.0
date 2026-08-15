@@ -1,0 +1,73 @@
+TOPPAY — GITHUB + VERCEL + DOMAIN SETUP
+========================================
+web-toppay.in ko live karne ke liye. ~5-10 minute. Sab aapko karna hai
+(GitHub/Vercel account ka kaam mujhse cloud se nahi hota).
+
+
+STEP 1 — GITHUB PAR NAYA REPO BANAO
+------------------------------------
+1. Browser mein kholo: https://github.com/new
+2. Repository name:  toppay3.0
+3. Private select karo (payment app hai, private behtar).
+4. "Add a README" / gitignore / license — KUCH mat select karo (khaali repo).
+5. "Create repository" dabao.
+6. Agla page khulega — usme repo ka URL hoga:
+   https://github.com/kt849669-beep/toppay3.0.git
+   (agar username alag hai to wahi use karna)
+
+
+STEP 2 — CODE COMMIT + PUSH KARO
+---------------------------------
+Windows + R -> cmd -> Enter. Ye ek-ek karke paste karo (right-click paste):
+
+  cd /d "C:\Users\OB5\Desktop\toppay"
+  git add -A
+  git commit -m "feat: toppay SEO login content + home redesign"
+  git branch -M main
+  git remote remove origin
+  git remote add origin https://github.com/kt849669-beep/toppay3.0.git
+  git push -u origin main
+
+(GitHub login maang sakta hai. .env.local push NAHI hoga - gitignore me hai,
+ to aapke Supabase secrets safe rahenge.)
+
+
+STEP 3 — VERCEL PAR PROJECT BANAO
+----------------------------------
+1. https://vercel.com  ->  Add New  ->  Project
+2. "Import Git Repository" me  toppay3.0  dhundo  ->  Import
+3. Framework: Next.js (apne aap detect hoga). Kuch badalna nahi.
+4. "Environment Variables" section kholo aur ye 2 add karo
+   (values aapki .env.local file se copy karo):
+
+     SUPABASE_URL        = (aapki .env.local wali value)
+     SUPABASE_ANON_KEY   = (aapki .env.local wali value)
+
+   (agar admin login chahiye to ye bhi:
+     ADMIN_FALLBACK_EMAIL, ADMIN_FALLBACK_PASSWORD)
+
+5. "Deploy" dabao. 1-2 minute me build ho jayega.
+   Ek .vercel.app URL milega - usko kholkar dekh lo, login page + neeche
+   SEO content aur home dono aane chahiye.
+
+
+STEP 4 — CUSTOM DOMAIN web-toppay.in JODO
+------------------------------------------
+1. Vercel me project kholo -> Settings -> Domains
+2. "Add" me likho:  web-toppay.in   -> Add
+3. Vercel DNS records dikhayega (A record ya CNAME). Wo note kar lo.
+   -> Ye DNS wala hissa aap apne registrar par kar denge (aapne kaha).
+4. DNS set hone ke baad (kuch minute-ghante) domain live ho jayega.
+
+
+STEP 5 — DEPLOY KE BAAD (SEO)
+------------------------------
+1. Google Search Console me web-toppay.in property add karo.
+2. Sitemap submit karo:  https://web-toppay.in/sitemap.xml  (10 URL)
+3. Homepage + har guide page ka URL Inspection -> Request Indexing.
+
+
+AGAR ATKO
+----------
+Jis step par error aaye, uska screenshot bhej do - main wahin se batata hoon.
+Push ho jaye to bhi bata dena, main live site khud check kar lunga.

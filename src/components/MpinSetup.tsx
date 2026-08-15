@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../AppContext';
 import { Lock } from 'lucide-react';
@@ -43,7 +43,7 @@ export default function MpinSetup() {
       }
 
       setUser(data.user);
-      sessionStorage.setItem('showpay_just_logged_in', 'true');
+      sessionStorage.setItem('toppay_just_logged_in', 'true');
       navigate('/');
     } catch (err: any) {
       setError(err.message);

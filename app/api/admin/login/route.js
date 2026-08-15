@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import { supabaseRest } from '@/lib/supabase-rest';
 
 export async function POST(request) {
@@ -15,6 +15,6 @@ export async function POST(request) {
   const token = crypto.randomUUID();
   await supabaseRest('admin_sessions', { method: 'POST', body: JSON.stringify({ token, device_info: request.headers.get('user-agent') || 'Next.js' }) }).catch(() => null);
   const response = NextResponse.json({ ok: true });
-  response.cookies.set('showpay_admin_session', token, { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', path: '/', maxAge: 60 * 60 * 12 });
+  response.cookies.set('toppay_admin_session', token, { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', path: '/', maxAge: 60 * 60 * 12 });
   return response;
 }

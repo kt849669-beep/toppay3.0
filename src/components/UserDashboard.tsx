@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useAppContext } from '../AppContext';
 import { Bell, Home, Search, User as UserIcon, Wallet, X, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -17,9 +17,9 @@ export default function UserDashboard() {
 
   useEffect(() => {
     // Post login sequence logic
-    const justLoggedIn = sessionStorage.getItem('showpay_just_logged_in');
+    const justLoggedIn = sessionStorage.getItem('toppay_just_logged_in');
     if (justLoggedIn) {
-      sessionStorage.removeItem('showpay_just_logged_in');
+      sessionStorage.removeItem('toppay_just_logged_in');
       setShowSuccessDialog(true);
     }
   }, []);

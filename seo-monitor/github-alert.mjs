@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+﻿import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -14,7 +14,7 @@ if (!token || !repository) {
 }
 
 const [owner, repo] = repository.split('/');
-const title = '[SEO Monitor] app-showpay.in alert';
+const title = '[SEO Monitor] web-toppay.in alert';
 const marker = `<!-- seo-monitor-fingerprint:${report.alertFingerprint} -->`;
 
 async function api(endpoint, options = {}) {

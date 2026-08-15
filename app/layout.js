@@ -1,17 +1,17 @@
-import './globals.css';
+﻿import './globals.css';
 
 export const metadata = {
-  metadataBase: new URL('https://app-showpay.in'),
-  title: 'ShowPay Login | Secure Account Access',
-  description: 'Sign in to ShowPay to access your account dashboard and available payment tools through the mobile-friendly ShowPay web app.',
+  metadataBase: new URL('https://web-toppay.in'),
+  title: 'TopPay Login | Secure Account Access',
+  description: 'Sign in to TopPay to access your account dashboard and available payment tools through the mobile-friendly TopPay web app.',
   alternates: { canonical: '/' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'ShowPay Login | Secure Account Access',
-    description: 'Sign in to access your ShowPay account dashboard and available payment tools.',
+    title: 'TopPay Login | Secure Account Access',
+    description: 'Sign in to access your TopPay account dashboard and available payment tools.',
     url: '/',
-    siteName: 'ShowPay',
-    images: [{ url: '/showpay-logo.png', alt: 'ShowPay logo' }],
+    siteName: 'TopPay',
+    images: [{ url: '/toppay-logo.png', alt: 'TopPay logo' }],
     type: 'website',
   },
 };

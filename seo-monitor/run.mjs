@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+﻿import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -56,7 +56,7 @@ const report = {
 };
 
 const lines = [
-  `# ShowPay hourly SEO report`,
+  `# TopPay hourly SEO report`,
   '',
   `- Generated: ${generatedAt}`,
   `- Status: **${report.status.toUpperCase()}**`,

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+﻿import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, AppState, Slide, Settings } from './types';
 
 interface AppContextType {
@@ -14,27 +14,27 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('showpay_user');
+    const saved = localStorage.getItem('toppay_user');
     return saved ? JSON.parse(saved) : null;
   });
   const [isAdmin, setIsAdmin] = useState<boolean>(() => {
-    return localStorage.getItem('showpay_admin') === 'true';
+    return localStorage.getItem('toppay_admin') === 'true';
   });
   const [appState, setAppState] = useState<AppState | null>(null);
 
   useEffect(() => {
     if (user) {
-      localStorage.setItem('showpay_user', JSON.stringify(user));
+      localStorage.setItem('toppay_user', JSON.stringify(user));
     } else {
-      localStorage.removeItem('showpay_user');
+      localStorage.removeItem('toppay_user');
     }
   }, [user]);
 
   useEffect(() => {
     if (isAdmin) {
-      localStorage.setItem('showpay_admin', 'true');
+      localStorage.setItem('toppay_admin', 'true');
     } else {
-      localStorage.removeItem('showpay_admin');
+      localStorage.removeItem('toppay_admin');
     }
   }, [isAdmin]);
 
