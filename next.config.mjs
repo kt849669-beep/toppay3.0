@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // NOTE: `output: 'standalone'` was removed. It is meant for self-hosting
+  // (Docker/Node server). On Vercel it is unnecessary and can produce a
+  // deployment that serves 404 for every route.
   poweredByHeader: false,
   async redirects() {
     return [{ source: '/login', destination: '/', permanent: true }];
