@@ -3,8 +3,6 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "cleanUrls": true,
-  "trailingSlash": false,
   "redirects": [
     { "source": "/login", "destination": "/", "permanent": true },
     { "source": "/toppay-apk.html", "destination": "/toppay-apk", "permanent": true },
