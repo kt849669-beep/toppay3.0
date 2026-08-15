@@ -3,4 +3,4 @@ Disallow: /admin
 Disallow: /admin-app/
 Allow: /
 
-Sitemap: https://web-toppay.in/sitemap.xml
+Sitemap: https://www.web-toppay.in/sitemap.xml

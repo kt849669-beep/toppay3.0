@@ -1,7 +1,7 @@
 ﻿const fs = require('fs');
 const path = require('path');
 
-const domain = 'https://web-toppay.in';
+const domain = 'https://www.web-toppay.in';
 const sitemapFile = path.join(__dirname, 'public', 'sitemap.xml');
 
 const urls = [

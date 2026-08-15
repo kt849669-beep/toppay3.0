@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const domain = 'https://web-toppay.in';
+const domain = 'https://www.web-toppay.in';
 const publicPages = [
   'about-toppay.html',
   'toppay-apk.html',
