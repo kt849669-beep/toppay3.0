@@ -3,7 +3,7 @@ const path = require('path');
 
 const domain = 'https://web-toppay.in';
 const publicDir = path.join(__dirname, 'public');
-const socialImage = `${domain}/toppay-logo.png`;
+const socialImage = `${domain}/toppay-logo.svg`;
 
 if (!fs.existsSync(publicDir)) {
   fs.mkdirSync(publicDir, { recursive: true });
@@ -694,7 +694,7 @@ for (const page of pages) {
     <meta name="description" content="${page.description}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="${canonical}" />
-    <link rel="icon" type="image/png" href="/toppay-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/toppay-logo.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="TopPay" />
     <meta property="og:title" content="${page.title}" />
@@ -714,7 +714,7 @@ for (const page of pages) {
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="/toppay-guide.html" aria-label="TopPay Guides"><img class="brand-mark" src="/toppay-logo.png" width="38" height="38" alt="TopPay logo" /><span>TopPay</span></a>
+        <a class="brand" href="/toppay-guide.html" aria-label="TopPay Guides"><img class="brand-mark" src="/toppay-logo.svg" width="38" height="38" alt="TopPay logo" /><span>TopPay</span></a>
         <nav class="header-nav" aria-label="Primary navigation">
           <a href="/toppay-guide.html">Home</a><a href="/toppay-usdt.html#usdt-calculator-title">Exchange</a><a href="/about-toppay.html">About</a><a href="/toppay-guide.html#guide-list">Blog</a><a href="#common-questions">FAQ</a><a href="/toppay-support.html">Contact</a><a href="/">Login</a>
         </nav>
@@ -732,7 +732,7 @@ for (const page of pages) {
             <div class="hero-actions"><a class="button register-link" href="https://app-web.toppay-web.com/regist?code=2invite5p6">Register Now</a><a class="button hero-login" href="/">TopPay Login</a><a class="button telegram-link" href="https://t.me/toppayofficial00" rel="noopener noreferrer">Join Telegram</a></div>
             <div class="trust-chips" aria-label="TopPay highlights"><span class="trust-chip">Instant Exchange</span><span class="trust-chip">Secure Transactions</span><span class="trust-chip">24/7 Support</span><span class="trust-chip">Risk &amp; Safety Checks</span></div>
           </div>
-          <div class="hero-logo-card"><div><img src="/toppay-logo.png" width="190" height="190" alt="TopPay logo for ${pageHeading}" /><strong>${pageHeading}</strong><span>TopPay information and account guide</span></div></div>
+          <div class="hero-logo-card"><div><img src="/toppay-logo.svg" width="190" height="190" alt="TopPay logo for ${pageHeading}" /><strong>${pageHeading}</strong><span>TopPay information and account guide</span></div></div>
         </div>
       </section>
 ${calculatorHtml(page)}

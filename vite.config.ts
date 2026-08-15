@@ -8,7 +8,14 @@ function getHtmlFiles(dir, fileList = {}) {
   for (const file of files) {
     const fullPath = resolve(dir, file);
     if (fs.statSync(fullPath).isDirectory()) {
-      if (file !== 'node_modules' && file !== 'dist' && file !== '.git' && file !== '.vercel') {
+      if (
+        file !== 'node_modules' &&
+        file !== 'dist' &&
+        file !== '.git' &&
+        file !== '.vercel' &&
+        file !== '.next' &&
+        file !== 'public'
+      ) {
         getHtmlFiles(fullPath, fileList);
       }
     } else if (file.endsWith('.html')) {
@@ -23,6 +30,29 @@ function getHtmlFiles(dir, fileList = {}) {
 
 export default defineConfig(() => {
   return {
+    plugins: [
+      {
+        name: 'toppay-local-routes',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            const routes = {
+              '/': '/user-app/pages/login.html',
+              '/login': '/user-app/pages/login.html',
+              '/home': '/user-app/pages/home.html',
+              '/admin': '/admin-app/pages/login.html',
+            };
+            const pathname = new URL(req.url || '/', 'http://localhost').pathname;
+            if (routes[pathname]) {
+              res.statusCode = 302;
+              res.setHeader('Location', routes[pathname]);
+              res.end();
+              return;
+            }
+            next();
+          });
+        },
+      },
+    ],
     server: {
       port: 3000,
       host: '0.0.0.0'

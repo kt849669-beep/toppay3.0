@@ -1,6 +1,22 @@
 {
-  "framework": "nextjs",
+  "version": 2,
+  "framework": null,
   "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/login", "destination": "/", "permanent": true },
+    { "source": "/toppay-apk.html", "destination": "/toppay-apk", "permanent": true },
+    { "source": "/toppay-usdt.html", "destination": "/toppay-usdt", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/user-app/pages/login.html" },
+    { "source": "/home", "destination": "/user-app/pages/home.html" },
+    { "source": "/admin", "destination": "/admin-app/pages/login.html" },
+    { "source": "/toppay-apk", "destination": "/toppay-apk.html" },
+    { "source": "/toppay-usdt", "destination": "/toppay-usdt.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -25,11 +41,11 @@
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
         },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; media-src 'self' https:; frame-ancestors 'none';" }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://kxsgjfvtfmbruddeolbt.supabase.co https://*.supabase.co; media-src 'self' https:; frame-ancestors 'none';" }
       ]
     },
     {
-      "source": "/:path*.(png|jpg|jpeg|webp|svg|ico)",
+      "source": "/assets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

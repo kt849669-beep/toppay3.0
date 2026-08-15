@@ -18,7 +18,7 @@ const schema = {
       '@id': `${site}/#organization`,
       name: 'TopPay',
       url: `${site}/`,
-      logo: { '@type': 'ImageObject', url: `${site}/toppay-logo.png`, width: 512, height: 512 },
+      logo: { '@type': 'ImageObject', url: `${site}/toppay-logo.svg`, width: 512, height: 512 },
       contactPoint: { '@type': 'ContactPoint', contactType: 'Customer Support', url: `${site}/toppay-support.html` },
     },
     {

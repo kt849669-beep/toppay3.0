@@ -67,14 +67,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         initSlider([
           {
             id: 1,
-            image_url:
-              "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&q=80&w=800",
+            image_url: "",
+            is_default: true,
           },
-          {
-            id: 2,
-            image_url:
-              "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=800",
-          },
+          { id: 2, image_url: "", is_default: true },
+          { id: 3, image_url: "", is_default: true },
+          { id: 4, image_url: "", is_default: true },
         ]);
       }
     } catch (err) {
@@ -83,8 +81,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       initSlider([
         {
           id: 1,
-          image_url:
-            "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&q=80&w=800",
+          image_url: "",
+          is_default: true,
         },
       ]);
     }
@@ -105,7 +103,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     slides.forEach((slide, index) => {
       const div = document.createElement("div");
       div.className = `slide ${index === 0 ? "active" : ""}`;
-      div.style.backgroundImage = `url('${slide.image_url}')`;
+      if (slide.is_default || !slide.image_url) {
+        div.classList.add("default-promo");
+        div.innerHTML = `
+          <div class="promo-copy">
+            <strong>A must <em>read for</em><br />newbies</strong>
+            <span>How to make more profits</span>
+            <button type="button">Click to read</button>
+          </div>
+          <div class="promo-book" aria-hidden="true"><span>$</span><i></i></div>`;
+      } else {
+        div.style.backgroundImage = `url('${slide.image_url}')`;
+      }
       container.insertBefore(div, dotsContainer);
 
       const dot = document.createElement("div");

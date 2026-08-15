@@ -11,7 +11,7 @@ export const metadata = {
     description: 'Sign in to access your TopPay account dashboard and available payment tools.',
     url: '/',
     siteName: 'TopPay',
-    images: [{ url: '/toppay-logo.png', alt: 'TopPay logo' }],
+    images: [{ url: '/toppay-logo.svg', alt: 'TopPay logo' }],
     type: 'website',
   },
 };

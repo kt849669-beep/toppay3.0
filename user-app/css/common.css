@@ -9,8 +9,8 @@
 }
 
 body {
-  background-color: #f5f7fa;
-  color: #333;
+  background-color: #ffffff;
+  color: #111111;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -34,20 +34,20 @@ body {
 
 /* Buttons */
 .btn-primary {
-  background-color: #4da6ff;
+  background-color: #8f8f8f;
   color: white;
   border: none;
   padding: 14px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 9px;
+  font-size: 17px;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
   width: 100%;
 }
 
 .btn-primary:hover {
-  background-color: #3b8ce0;
+  background-color: #7f7f7f;
 }
 
 .btn-primary:active {

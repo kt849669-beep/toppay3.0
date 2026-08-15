@@ -72,9 +72,9 @@
 }
 
 .mpin-box:focus {
-  border-color: #6052FF;
+  border-color: #8f8f8f;
   background: white;
-  box-shadow: 0 0 0 2px rgba(96, 82, 255, 0.1);
+  box-shadow: 0 0 0 2px rgba(143, 143, 143, 0.16);
 }
 
 .mpin-security-note {
@@ -109,13 +109,13 @@
 }
 
 .btn-confirm-modern {
-  background: #4B9DFF; /* Halka skyblue */
-  border: 1px solid #4B9DFF;
+  background: #8f8f8f;
+  border: 1px solid #8f8f8f;
   color: white;
 }
 
 .btn-confirm-modern:active {
-  background: #3A8CEB;
+  background: #777777;
 }
 
 /* Success Message */
@@ -136,8 +136,8 @@
 .success-icon {
   width: 40px;
   height: 40px;
-  background: #e8f5e9;
-  color: #4caf50;
+  background: #f2f2f2;
+  color: #777777;
   border-radius: 50%;
   display: flex;
   align-items: center;

@@ -70,7 +70,7 @@ function validateJsonLd(html, label) {
 }
 
 const login = read('user-app/pages/login.html');
-expect(login.includes('<h1 class="header">Login</h1>'), 'login: missing visible H1');
+expect(login.includes('<h1 class="header">LOG IN</h1>'), 'login: missing visible H1');
 expect(
   headValue(login, 'link', 'rel', 'canonical', 'href') === `${domain}/`,
   'login: canonical must be the root URL',
@@ -145,7 +145,7 @@ expect(
   'USDT calculator: missing INR number formatting',
 );
 
-expect(fs.statSync(path.join(root, 'public', 'toppay-logo.png')).size > 0, 'public logo is empty');
+expect(fs.statSync(path.join(root, 'public', 'toppay-logo.svg')).size > 0, 'public logo is empty');
 
 const sitemap = read('public/sitemap.xml');
 const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);

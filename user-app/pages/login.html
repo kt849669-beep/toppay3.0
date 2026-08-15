@@ -9,6 +9,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="application-name" content="TopPay" />
+    <meta name="theme-color" content="#ffffff" />
     <!-- Primary Title & Description -->
     <title>TopPay Login | Secure Account Access</title>
     <meta name="description" content="Sign in to TopPay to access your account dashboard and available payment tools through the mobile-friendly TopPay web app.">
@@ -17,6 +19,9 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="keywords" content="Toppay login, Toppay, Toppay app, Top pay, Toppay apk, Toppay app download, Toppay usdt, toppay real or fake, TopPay login" />
     <link rel="canonical" href="https://web-toppay.in/" />
+    <link rel="alternate" hreflang="en-IN" href="https://web-toppay.in/" />
+    <link rel="alternate" hreflang="x-default" href="https://web-toppay.in/" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- Google Site Name & Open Graph (For Social & SERP Name) -->
     <meta property="og:site_name" content="TopPay">
@@ -24,18 +29,19 @@
     <meta property="og:description" content="Sign in to access your TopPay account dashboard and available payment tools.">
     <meta property="og:url" content="https://web-toppay.in/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://web-toppay.in/toppay-logo.png" />
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:image" content="https://web-toppay.in/toppay-logo.svg" />
     <meta property="og:image:alt" content="TopPay logo" />
 
     <!-- Twitter Tags -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="TopPay Login | Secure Account Access" />
     <meta name="twitter:description" content="Sign in to access your TopPay account dashboard and available payment tools." />
-    <meta name="twitter:image" content="https://web-toppay.in/toppay-logo.png" />
+    <meta name="twitter:image" content="https://web-toppay.in/toppay-logo.svg" />
 
     <!-- Logo / Favicon -->
-    <link rel="icon" type="image/png" href="/toppay-logo.png">
-    <link rel="apple-touch-icon" href="/toppay-logo.png">
+    <link rel="icon" type="image/svg+xml" href="/toppay-logo.svg">
+    <link rel="apple-touch-icon" href="/toppay-logo.svg">
 
     <!-- Performance Optimizations -->
     <link rel="preload" href="../css/common.css" as="style" />
@@ -66,7 +72,7 @@
           "url": "https://web-toppay.in/",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://web-toppay.in/toppay-logo.png"
+            "url": "https://web-toppay.in/toppay-logo.svg"
           },
           "sameAs": [
             "https://t.me/bolintoppay1"
@@ -84,7 +90,39 @@
           "name": "TopPay Login",
           "description": "Sign in to TopPay to access the account dashboard and available payment tools.",
           "isPartOf": { "@id": "https://web-toppay.in/#website" },
-          "about": { "@id": "https://web-toppay.in/#organization" }
+          "about": { "@id": "https://web-toppay.in/#organization" },
+          "mainEntity": { "@id": "https://web-toppay.in/#webapp" }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://web-toppay.in/#webapp",
+          "name": "TopPay",
+          "alternateName": ["Toppay", "Top pay", "Toppay app"],
+          "url": "https://web-toppay.in/",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "Web",
+          "description": "TopPay is a mobile-friendly web application for account access and available payment tools."
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://web-toppay.in/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the TopPay login URL?",
+              "acceptedAnswer": { "@type": "Answer", "text": "The TopPay login on this website is available at https://web-toppay.in/. Check the full address before entering account details." }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I use the TopPay app on mobile?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. The TopPay web app is designed for current mobile browsers." }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I recover my TopPay password?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Use the Forget Password link shown on the TopPay login screen and never share a password, OTP or MPIN." }
+            }
+          ]
         }
       ]
     }
@@ -92,7 +130,7 @@
   </head>
   <body>
     <div class="login-container">
-      <h1 class="header">Login</h1>
+      <h1 class="header">LOG IN</h1>
 
       <form id="loginForm">
         <div class="form-group">
@@ -139,11 +177,46 @@
           </button>
         </div>
 
-        <div class="register-link-container">
-          <span>Don't have an account?</span> <a href="https://app-web.toppay-web.com/regist?code=2invite5p6">Register</a>
-        </div>
       </form>
     </div>
+
+    <section class="login-seo-content" aria-labelledby="toppay-about-title">
+      <span class="seo-kicker">TopPay account access</span>
+      <h2 id="toppay-about-title">TopPay login and mobile web app</h2>
+      <p><strong>TopPay</strong>, also searched as Toppay or Top pay, provides a mobile-friendly account login and access to the payment tools available to signed-in users. Confirm that the address bar shows <strong>web-toppay.in</strong> before entering account details.</p>
+
+      <div class="seo-card-grid">
+        <article class="seo-card">
+          <h2>How to use the TopPay login</h2>
+          <p>Enter the phone number and password associated with your account, then select LOG IN. Use the visible Forget Password option if you cannot access your account.</p>
+          <a href="/how-to-use-toppay.html">Read the TopPay usage guide</a>
+        </article>
+        <article class="seo-card">
+          <h2>TopPay app and USDT help</h2>
+          <p>Review the available guides before using app, deposit or USDT features. Always verify wallet addresses, networks and transaction details inside your own account.</p>
+          <a href="/toppay-usdt">Read the TopPay USDT guide</a>
+        </article>
+      </div>
+
+      <aside class="seo-takeaway"><strong>Account safety:</strong> never share your TopPay password, OTP, MPIN or recovery code with anyone.</aside>
+
+      <section class="seo-faq" aria-labelledby="toppay-faq-title">
+        <h2 id="toppay-faq-title">TopPay login questions</h2>
+        <h3>What is the TopPay login URL?</h3>
+        <p>The login on this website is available at <strong>https://web-toppay.in/</strong>.</p>
+        <h3>Can I use the TopPay app on mobile?</h3>
+        <p>Yes. The TopPay web app is designed for current mobile browsers.</p>
+        <h3>How do I recover my TopPay password?</h3>
+        <p>Use the Forget Password link displayed on the login screen and follow the recovery instructions.</p>
+      </section>
+
+      <nav class="seo-links" aria-label="TopPay guides">
+        <a href="/toppay-guide.html">TopPay guides</a>
+        <a href="/toppay-apk">TopPay app and APK</a>
+        <a href="/toppay-support.html">TopPay support</a>
+        <a href="/toppay-password-help.html">Password help</a>
+      </nav>
+    </section>
 
     <!-- Limit Popup -->
     <div

@@ -44,14 +44,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1e3a8a, #312e81);
+  padding: 20px;
+  background: #ffffff;
 }
 
 .admin-login-box {
   background: white;
   padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid #eeeeee;
+  border-radius: 14px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 400px;
 }
@@ -68,18 +70,18 @@ body {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: none;
+  border-radius: 10px;
+  background: #fafafa;
   outline: none;
 }
 .admin-input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 0 2px #d7d7d7;
 }
 
 .admin-btn {
   width: 100%;
-  background: #2563eb;
+  background: #8f8f8f;
   color: white;
   border: none;
   padding: 14px;
@@ -89,7 +91,7 @@ body {
   transition: 0.2s;
 }
 .admin-btn:hover {
-  background: #1d4ed8;
+  background: #777777;
 }
 
 /* Dashboard Layout */
