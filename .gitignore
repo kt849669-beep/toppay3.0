@@ -6,8 +6,13 @@ coverage/
 .DS_Store
 *.log
 seo-monitor/output/
+
+# Local env + Vercel link
 .env*
 !.env.example
-
 .vercel
-.env*
+
+# Scratch / vendored sub-projects - must never be committed or built.
+# vite.config.ts also skips any folder containing its own package.json.
+vendor/
+scratch/

@@ -2,13 +2,16 @@
 User-agent: *
 Allow: /
 
-# Private / duplicate routes
+# Private admin surface - safe to block (no SEO value, never linked publicly)
 Disallow: /admin
 Disallow: /admin-app/
 Disallow: /user-app/
-Disallow: /portal.html
-Disallow: /404.html
-Disallow: /offline.html
+
+# NOTE: /portal.html, /404.html and /offline.html are deliberately NOT blocked.
+# /portal.html 301-redirects to / (see vercel.json) and /404.html + /offline.html
+# carry <meta name="robots" content="noindex, follow">. A blocked URL can never be
+# crawled, so Google never sees the redirect or the noindex and the URL stays stuck
+# in "Blocked by robots.txt" forever. Allowing the crawl lets Google drop them cleanly.
 
 # Media and asset crawling is allowed
 Allow: /assets/
