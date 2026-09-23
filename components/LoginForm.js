@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -39,7 +39,7 @@ export default function LoginForm() {
         <div className="forgot"><a href="https://app-web.toppay-web.com/forgetPassword">Forget Password</a></div>
         {error && <p className="form-error" role="alert">{error}</p>}
         <button className="primary login-button" disabled={loading}>{loading ? 'Please wait...' : 'LOG IN'}</button>
-        <p className="register">Don&apos;t have an account? <a href="https://app-web.toppay-web.com/regist?code=2invite5p6">Register</a></p>
+        <p className="register" style={{ fontSize: '13px', color: '#888888', marginTop: '16px' }}>New user <a href="https://app.toppay-web.com/regist?code=1eashowpbshz" target="_blank" rel="noopener noreferrer" style={{ color: '#888888', textDecoration: 'underline' }}>Register</a></p>
       </form>
       {limited && <div className="modal"><div className="dialog"><h2>Update Request Already Received</h2><p>Please wait some time. You can use another link:</p><a className="secondary" href={limited}>{limited}</a></div></div>}
     </>
