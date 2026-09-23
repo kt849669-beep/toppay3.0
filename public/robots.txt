@@ -1,0 +1,18 @@
+# https://web-toppay.in/robots.txt
+User-agent: *
+Allow: /
+
+# Account and administrator pages
+Disallow: /admin
+Disallow: /admin-app/
+Disallow: /user-app/
+
+# Allow crawling of redirects and error pages so crawlers can process
+# their redirect responses and noindex metadata.
+
+# Media and asset crawling is allowed
+Allow: /assets/
+Allow: /toppay-logo.jpeg
+Allow: /toppay-og.png
+
+Sitemap: https://web-toppay.in/sitemap.xml
