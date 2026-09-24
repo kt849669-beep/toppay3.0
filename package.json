@@ -7,7 +7,7 @@
     "generate:seo": "node seo-generator.cjs",
     "prebuild": "npm run generate:seo",
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && node postbuild.cjs",
     "preview": "vite preview --host=0.0.0.0",
     "pretest:seo": "npm run generate:seo",
     "test:seo": "node tests/seo-audit.mjs"

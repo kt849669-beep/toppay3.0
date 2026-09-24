@@ -21,7 +21,9 @@ Publish the contents of `dist/` to a static host.
 Redirect `/login`, `/index.html` and `/portal.html` to `/`.
 Public guide aliases redirect to their corresponding `.html` URLs.
 
-`vercel.json` contains the complete route and response-header configuration for hosts that support it. For other hosts, carry over its redirects, rewrites, security headers and cache rules. This configuration does not connect the folder to a hosting account.
+`wrangler.jsonc`, `worker.js`, `_redirects` and `_headers` contain the complete route, rewrite, redirect, and security header configuration for Cloudflare Workers (with Static Assets) and Cloudflare Pages.
+- **Cloudflare Workers Builds:** Uses `wrangler.jsonc` and `worker.js` with assets directory `./dist` and build command `npm run build`.
+- **Cloudflare Pages:** Uses build command `npm run build` and build output directory `dist`. Route rewrites and headers are handled via `_redirects`, `_headers` and `_worker.js`.
 
 ## Domain and database
 
