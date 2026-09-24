@@ -11,12 +11,11 @@ if (fs.existsSync(loginHtmlPath)) {
   console.log('✓ Copied user-app/pages/login.html to dist/index.html');
 }
 
-// 2. Copy worker.js to dist/_worker.js (for Cloudflare Pages Advanced mode)
-const workerPath = path.resolve(__dirname, 'worker.js');
+// 2. Remove dist/_worker.js if present (Cloudflare Worker uses root worker.js, not asset _worker.js)
 const distWorkerPath = path.join(distDir, '_worker.js');
-if (fs.existsSync(workerPath)) {
-  fs.copyFileSync(workerPath, distWorkerPath);
-  console.log('✓ Copied worker.js to dist/_worker.js');
+if (fs.existsSync(distWorkerPath)) {
+  fs.unlinkSync(distWorkerPath);
+  console.log('✓ Removed dist/_worker.js to prevent asset upload conflict');
 }
 
 // 3. Ensure _redirects is copied to dist/_redirects
@@ -35,3 +34,8 @@ if (fs.existsSync(headersSrc)) {
   fs.copyFileSync(headersSrc, headersDest);
   console.log('✓ Copied public/_headers to dist/_headers');
 }
+
+// 5. Ensure .assetsignore exists in dist/ to avoid any accidental worker upload warnings
+const assetsIgnoreDest = path.join(distDir, '.assetsignore');
+fs.writeFileSync(assetsIgnoreDest, '_worker.js\n', 'utf8');
+console.log('✓ Wrote dist/.assetsignore');
