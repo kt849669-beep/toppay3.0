@@ -1,6 +1,6 @@
 # Cloudflare Pages / Static redirects and rewrites
 # Rewrites (200 status)
-/ /user-app/pages/login.html 200
+/ /index.html 200
 /home /user-app/pages/home.html 200
 /admin /admin-app/pages/login.html 200
 
@@ -8,6 +8,8 @@
 /login / 301
 /index.html / 301
 /portal.html / 301
+/user-app/pages/login / 301
+/user-app/pages/login.html / 301
 
 # Clean SEO aliases
 /toppay-guide /toppay-guide.html 301

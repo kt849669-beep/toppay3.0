@@ -9,7 +9,13 @@ export default {
     const pathname = url.pathname;
 
     // 1. Permanent Canonical Redirects
-    if (pathname === '/login' || pathname === '/index.html' || pathname === '/portal.html') {
+    if (
+      pathname === '/login' ||
+      pathname === '/index.html' ||
+      pathname === '/portal.html' ||
+      pathname === '/user-app/pages/login' ||
+      pathname === '/user-app/pages/login.html'
+    ) {
       return Response.redirect(`${url.origin}/`, 301);
     }
 
@@ -41,9 +47,11 @@ export default {
     }
 
     // 2. URL Rewrites
+    // For root /, dist/index.html is the built login app (copied by postbuild.cjs).
+    // Serving /index.html directly ensures a clean 200 OK response with no 307 temporary redirect.
     let assetUrl = new URL(request.url);
     if (pathname === '/') {
-      assetUrl.pathname = '/user-app/pages/login.html';
+      assetUrl.pathname = '/index.html';
     } else if (pathname === '/home') {
       assetUrl.pathname = '/user-app/pages/home.html';
     } else if (pathname === '/admin') {
@@ -55,6 +63,18 @@ export default {
     try {
       if (env && env.ASSETS) {
         response = await env.ASSETS.fetch(new Request(assetUrl, request));
+        // Safety guard: If ASSETS returned an internal redirect (e.g. 307/308 to strip .html or slash),
+        // resolve it internally so Googlebot and browsers always receive a direct 200 OK.
+        if (response.status >= 300 && response.status < 400) {
+          const location = response.headers.get('Location');
+          if (location && (pathname === '/' || pathname === '/home' || pathname === '/admin' || pathname.endsWith('.html'))) {
+            const redirectUrl = new URL(location, request.url);
+            const followed = await env.ASSETS.fetch(new Request(redirectUrl, request));
+            if (followed && followed.status === 200) {
+              response = followed;
+            }
+          }
+        }
       } else {
         response = await fetch(new Request(assetUrl, request));
       }

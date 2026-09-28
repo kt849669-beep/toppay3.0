@@ -29,9 +29,22 @@ function read(file) {
  * 1. Config-level checks
  * ---------------------------------------------------------------- */
 
-const vercel = JSON.parse(read(path.join(root, 'vercel.json')));
-const redirectSources = new Set((vercel.redirects || []).map((r) => r.source));
-const rewriteSources = new Set((vercel.rewrites || []).map((r) => r.source));
+const redirectsContent = read(path.join(publicDir, '_redirects'));
+const redirectSources = new Set();
+const rewriteSources = new Set();
+for (const line of redirectsContent.split('\n')) {
+  const trimmed = line.trim();
+  if (!trimmed || trimmed.startsWith('#')) continue;
+  const parts = trimmed.split(/\s+/);
+  if (parts.length >= 3) {
+    const [src, dest, status] = parts;
+    if (status === '200') {
+      rewriteSources.add(src);
+    } else if (['301', '302', '307', '308'].includes(status)) {
+      redirectSources.add(src);
+    }
+  }
+}
 
 const homePage = read(path.join(root, 'user-app', 'pages', 'login.html'));
 check(homePage.includes(`<link rel="canonical" href="${DOMAIN}/"`), 'home page: canonical host is incorrect');
