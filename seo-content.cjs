@@ -12,11 +12,16 @@ const brandKeywords = [
   'Toppay',
   'Toppay login',
   'Top pay',
-  'Toppay app',
-  'Toppay apk',
-  'Toppay usdt',
-  'Toppay real or fake',
   'Toppay official',
+  'Toppay usdt',
+  'Toppay apk',
+  'Toppay app',
+  'Toppay apk download',
+  'Toppay app download',
+  'Top pay login',
+  'Toppay official website',
+  'Toppay login page',
+  'Toppay real or fake',
 ];
 
 const websiteNode = {
@@ -24,7 +29,19 @@ const websiteNode = {
   '@id': `${domain}/#website`,
   url: `${domain}/`,
   name: 'TopPay',
-  alternateName: ['Toppay', 'Top pay', 'Toppay official', 'Toppay app', 'Toppay login'],
+  alternateName: [
+    'Toppay',
+    'Top pay',
+    'Toppay official',
+    'Toppay login',
+    'Toppay app',
+    'Toppay apk',
+    'Toppay usdt',
+    'Toppay apk download',
+    'Toppay app download',
+    'Toppay official website',
+    'Top pay login',
+  ],
   inLanguage: 'en-IN',
   publisher: { '@id': `${domain}/#organization` },
 };
@@ -33,7 +50,7 @@ const organizationNode = {
   '@type': 'Organization',
   '@id': `${domain}/#organization`,
   name: 'TopPay',
-  alternateName: ['Toppay', 'Top pay', 'Toppay official'],
+  alternateName: ['Toppay', 'Top pay', 'Toppay official', 'Toppay official website'],
   url: `${domain}/`,
   logo: {
     '@type': 'ImageObject',
@@ -44,7 +61,7 @@ const organizationNode = {
   },
   image: { '@id': `${domain}/#logo` },
   description:
-    'TopPay (Toppay) is the official mobile-friendly web platform for TopPay account login, app access and USDT payment guides.',
+    'TopPay (Toppay) is the official mobile-friendly web platform for TopPay account login, Toppay app, Toppay APK download access and Toppay USDT payment guides.',
   areaServed: 'IN',
   sameAs: ['https://t.me/toppayofficial00', 'https://t.me/bolintoppay1'],
   contactPoint: [
