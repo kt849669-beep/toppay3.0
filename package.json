@@ -3,7 +3,9 @@
   "private": true,
   "version": "3.0.0",
   "type": "module",
+  "main": "server.mjs",
   "scripts": {
+    "start": "node server.mjs",
     "generate:seo": "node seo-generator.cjs",
     "prebuild": "npm run generate:seo",
     "dev": "vite --port=3000 --host=0.0.0.0",
