@@ -24,7 +24,7 @@ const layout = (title, script, content) => `<!DOCTYPE html>
     <title>${title} - TopPay Admin</title>
     <link rel="stylesheet" href="../css/admin.css">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="/assets/vendor/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="dashboard-layout">
