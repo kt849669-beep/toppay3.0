@@ -1,6 +1,6 @@
 import LoginForm from '@/components/LoginForm';
 
-const site = 'https://web-toppay.in';
+const site = 'https://toppay-offical.website';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -47,7 +47,7 @@ const schema = {
       url: `${site}/`,
       mainEntity: [
         { '@type': 'Question', name: 'What is the correct TopPay login URL?', acceptedAnswer: { '@type': 'Answer', text: `The official TopPay login is at ${site}/. Check the full address before entering account details.` } },
-        { '@type': 'Question', name: 'Is TopPay real or fake?', acceptedAnswer: { '@type': 'Answer', text: 'TopPay is a real, working web application. To stay safe, only use the official web-toppay.in address and never share your password, OTP or MPIN with anyone.' } },
+        { '@type': 'Question', name: 'Is TopPay real or fake?', acceptedAnswer: { '@type': 'Answer', text: 'TopPay is a real, working web application. To stay safe, only use the official toppay-offical.website address and never share your password, OTP or MPIN with anyone.' } },
         { '@type': 'Question', name: 'Can I use the TopPay app on mobile?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The TopPay web app is mobile-friendly and opens in any current phone browser without installing an unverified APK file.' } },
         { '@type': 'Question', name: 'How do I recover my TopPay password?', acceptedAnswer: { '@type': 'Answer', text: 'Open the TopPay login and use the Forget Password link shown with the form. Never share a password, OTP or MPIN.' } },
         { '@type': 'Question', name: 'How do I reach TopPay customer support?', acceptedAnswer: { '@type': 'Answer', text: 'Open the TopPay customer support page for login, deposit status and USDT transaction guidance. Keep your password, OTP and MPIN out of any support message.' } },
@@ -76,12 +76,12 @@ export default function LoginPage() {
 
         <h2>How do I access the TopPay login?</h2>
         <p>
-          Open <strong>https://web-toppay.in/</strong>, confirm the complete address and enter the phone
+          Open <strong>https://toppay-offical.website/</strong>, confirm the complete address and enter the phone
           number and password linked to your own account. The visible form is the direct TopPay login. If
           access fails, use the Forget Password option shown with the form instead of an unknown recovery link.
         </p>
         <ol className="seo-steps">
-          <li>Confirm the address bar shows <strong>web-toppay.in</strong>.</li>
+          <li>Confirm the address bar shows <strong>toppay-offical.website</strong>.</li>
           <li>Enter your registered phone number and password.</li>
           <li>Select LOG IN and follow only the instructions shown in your account.</li>
         </ol>
@@ -91,7 +91,7 @@ export default function LoginPage() {
             <h2>Is TopPay real or fake?</h2>
             <p>
               TopPay is a real, working web application. To stay safe, use only the official
-              <strong> web-toppay.in</strong> address and never share your password, OTP or MPIN. Avoid any
+              <strong> toppay-offical.website</strong> address and never share your password, OTP or MPIN. Avoid any
               site or message claiming to be TopPay on a different domain.
             </p>
             <a href="/about-toppay.html">Read about the official TopPay</a>
@@ -114,9 +114,9 @@ export default function LoginPage() {
         <section className="seo-faq" aria-labelledby="toppay-faq-title">
           <h2 id="toppay-faq-title">TopPay login questions</h2>
           <h3>What is the correct TopPay login URL?</h3>
-          <p>The official login is available at <strong>https://web-toppay.in/</strong>. Check the full address before entering account details.</p>
+          <p>The official login is available at <strong>https://toppay-offical.website/</strong>. Check the full address before entering account details.</p>
           <h3>Is TopPay real or fake?</h3>
-          <p>TopPay is a real web application. Confirm you are on the official web-toppay.in address, and never share a password, OTP or MPIN with anyone.</p>
+          <p>TopPay is a real web application. Confirm you are on the official toppay-offical.website address, and never share a password, OTP or MPIN with anyone.</p>
           <h3>How do I recover my TopPay password?</h3>
           <p>Use the Forget Password link shown with the login form, then follow the recovery instructions opened from that link.</p>
           <h3>Should I install a TopPay APK from another website?</h3>
