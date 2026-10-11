@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const publicDir = path.join(root, 'public');
-const DOMAIN = 'https://web-toppay.in';
+const DOMAIN = 'https://toppay-offical.website';
 const MIN_WORDS = 600;
 
 const failures = [];
@@ -147,7 +147,7 @@ for (const file of htmlFiles) {
   check(html.includes('twitter:card'), `${label}: missing twitter:card`);
 
   /* -- no dead www-host references anywhere in the document -- */
-  const wwwReferences = (html.match(/https:\/\/www\.web-toppay\.in/g) || []).length;
+  const wwwReferences = (html.match(/https:\/\/www\.toppay-offical\.website/g) || []).length;
   check(wwwReferences === 0, `${label}: ${wwwReferences} dead www-host reference(s) found -- must use ${DOMAIN}`);
 
   /* -- headings -- */
@@ -169,7 +169,7 @@ for (const file of htmlFiles) {
       const nodes = parsed['@graph'] || [parsed];
       faqCount += nodes.filter((node) => node['@type'] === 'FAQPage').length;
       for (const node of nodes) {
-        const ids = JSON.stringify(node).match(/https:\/\/www\.web-toppay\.in/g) || [];
+        const ids = JSON.stringify(node).match(/https:\/\/www\.toppay-offical\.website/g) || [];
         check(ids.length === 0, `${label}: JSON-LD contains a dead www-host @id/url`);
       }
     } catch (error) {
@@ -197,7 +197,7 @@ for (const file of htmlFiles) {
 const loginPath = path.join(root, 'user-app', 'pages', 'login.html');
 const login = read(loginPath);
 check(login.includes(`<link rel="canonical" href="${DOMAIN}/" />`), 'login.html: canonical must use the live apex homepage');
-check((login.match(/https:\/\/www\.web-toppay\.in/g) || []).length === 0, 'login.html: dead www-host reference found');
+check((login.match(/https:\/\/www\.toppay-offical\.website/g) || []).length === 0, 'login.html: dead www-host reference found');
 check(login.includes('hreflang="x-default"'), 'login.html: missing hreflang x-default');
 check(login.includes(`${DOMAIN}/toppay-og.png`), 'login.html: og:image is not the 1200x630 PNG');
 const loginLd = [...login.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
