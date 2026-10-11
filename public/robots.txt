@@ -1,4 +1,4 @@
-# https://web-toppay.in/robots.txt
+# https://toppay-offical.website/robots.txt
 User-agent: *
 Allow: /
 
@@ -15,4 +15,4 @@ Allow: /assets/
 Allow: /toppay-logo.jpeg
 Allow: /toppay-og.png
 
-Sitemap: https://web-toppay.in/sitemap.xml
+Sitemap: https://toppay-offical.website/sitemap.xml
