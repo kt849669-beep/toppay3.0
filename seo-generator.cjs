@@ -69,7 +69,7 @@ const siteFooter = `
       <div class="footer-inner">
         <div>
           <strong>TopPay</strong><br />
-          Official Toppay login, app access and USDT guides for web-toppay.in.
+          Official Toppay login, app access and USDT guides for toppay-offical.website.
         </div>
         <div>
           <a href="/toppay-guide.html">Guides</a> &middot;
@@ -302,7 +302,7 @@ ${bodyWithoutH1}
         </article>
         <aside class="side-stack" aria-label="Toppay quick links">
           <section class="side-card"><p class="eyebrow">Quick access</p><h2>Toppay account help</h2><a href="/">Open Toppay Login</a><a href="/toppay-password-help.html">Password Help</a><a href="/toppay-customer-care.html">Customer Care</a><a href="/toppay-real-or-fake.html">Real or Fake?</a></section>
-          <section class="side-card"><p class="eyebrow">Safety check</p><h2>Before you continue</h2><p>Verify the complete <strong>web-toppay.in</strong> address, never install a Toppay APK sent by link, and never share your password, OTP or MPIN with anyone.</p></section>
+          <section class="side-card"><p class="eyebrow">Safety check</p><h2>Before you continue</h2><p>Verify the complete <strong>toppay-offical.website</strong> address, never install a Toppay APK sent by link, and never share your password, OTP or MPIN with anyone.</p></section>
         </aside>
       </div>
 ${quickBlockHtml(page)}
@@ -325,7 +325,7 @@ for (const page of allPages) {
 }
 
 /* robots.txt --------------------------------------------------------- */
-const robots = `# https://web-toppay.in/robots.txt
+const robots = `# https://toppay-offical.website/robots.txt
 User-agent: *
 Allow: /
 
@@ -389,7 +389,7 @@ const notFound = `<!doctype html>
       <div class="content-grid">
         <article class="content-panel">
           <h1>Page not found (404)</h1>
-          <p>The page you were looking for does not exist on <strong>web-toppay.in</strong>. It may have been moved, or the address may contain a typing error.</p>
+          <p>The page you were looking for does not exist on <strong>toppay-offical.website</strong>. It may have been moved, or the address may contain a typing error.</p>
           <h2>Where to go next</h2>
           <ul>
             <li><a href="/">Toppay login</a></li>
