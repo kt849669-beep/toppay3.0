@@ -5,7 +5,7 @@
  * yahan sirf content hai.
  */
 
-const domain = 'https://web-toppay.in';
+const domain = 'https://toppay-offical.website';
 
 // Global brand keyword set (title/description/body me natural rup se use hota hai)
 const brandKeywords = [
@@ -93,11 +93,11 @@ const pages = [
     schemaType: 'CollectionPage',
     body: `
       <h1>Toppay Guides</h1>
-      <p><strong>Toppay</strong> (also written as <strong>Top pay</strong> or TopPay) is a mobile-friendly payment account platform. This page is the central guide hub for everything on the official <strong>Toppay</strong> website at <strong>web-toppay.in</strong> &mdash; the <strong>Toppay login</strong>, the <strong>Toppay app</strong> and <strong>Toppay APK</strong> question, <strong>Toppay USDT</strong> deposits and withdrawals, password recovery, and the honest answer to the common search <strong>&ldquo;Toppay real or fake&rdquo;</strong>.</p>
+      <p><strong>Toppay</strong> (also written as <strong>Top pay</strong> or TopPay) is a mobile-friendly payment account platform. This page is the central guide hub for everything on the official <strong>Toppay</strong> website at <strong>toppay-offical.website</strong> &mdash; the <strong>Toppay login</strong>, the <strong>Toppay app</strong> and <strong>Toppay APK</strong> question, <strong>Toppay USDT</strong> deposits and withdrawals, password recovery, and the honest answer to the common search <strong>&ldquo;Toppay real or fake&rdquo;</strong>.</p>
       <p>If you are not sure which page you need, start here. Every guide below is written for one specific task, so you can go straight to the answer instead of reading everything.</p>
 
       <h2>Start with the Toppay login</h2>
-      <p>The account entry point for this platform is the <a href="/">Toppay login page</a> on this same domain. Before you type a phone number or password, check that your browser address bar shows exactly <strong>web-toppay.in</strong>. Payment brands are commonly copied by look-alike domains, and the address bar is the single most reliable check available to you.</p>
+      <p>The account entry point for this platform is the <a href="/">Toppay login page</a> on this same domain. Before you type a phone number or password, check that your browser address bar shows exactly <strong>toppay-offical.website</strong>. Payment brands are commonly copied by look-alike domains, and the address bar is the single most reliable check available to you.</p>
       <p>The login itself only needs two things: the registered phone number and the account password. If either one does not work, do not keep retrying &mdash; go to the <a href="/toppay-password-help.html">Toppay password help guide</a> instead.</p>
 
       <h2>Toppay app and Toppay APK</h2>
@@ -141,17 +141,17 @@ const pages = [
     quick: {
       queries: ['Toppay', 'Toppay login', 'Toppay app', 'Toppay apk', 'Toppay usdt', 'Top pay', 'Toppay official', 'Toppay real or fake'],
       summary:
-        'This is the official Toppay guide hub on web-toppay.in. Pick the guide that matches your task: Toppay login, Toppay app and APK, Toppay USDT deposits and withdrawals, password recovery, or the Toppay real-or-fake safety check.',
+        'This is the official Toppay guide hub on toppay-offical.website. Pick the guide that matches your task: Toppay login, Toppay app and APK, Toppay USDT deposits and withdrawals, password recovery, or the Toppay real-or-fake safety check.',
       audience: 'Anyone looking for a single directory of official Toppay help pages for login, app, APK, USDT and account support.',
       keyPoints: [
-        'The official Toppay login for this platform is at web-toppay.in.',
+        'The official Toppay login for this platform is at toppay-offical.website.',
         'Toppay, Top pay and TopPay are spelling variants of the same brand on this site.',
         'The Toppay app runs in the mobile browser, so no APK download is required from this site.',
         'USDT transfers cannot be reversed, so read the USDT guide before your first transaction.',
       ],
       questions: [
         ['Which Toppay guide should I read first?', 'Start with the guide that matches your immediate task. For first-time users, "How to use Toppay" and the Toppay login page are the right starting point.'],
-        ['Is this the official Toppay website?', 'This guide hub is published on web-toppay.in, which is the domain hosting this Toppay login and account platform. Always confirm the full address in your browser before signing in.'],
+        ['Is this the official Toppay website?', 'This guide hub is published on toppay-offical.website, which is the domain hosting this Toppay login and account platform. Always confirm the full address in your browser before signing in.'],
         ['Do these pages ask for my password?', 'No. These are public guide pages. They never collect a password, OTP or MPIN.'],
       ],
     },
@@ -164,13 +164,13 @@ const pages = [
     changefreq: 'monthly',
     title: 'Toppay Kya Hai? About Toppay Official App & Login Platform',
     description:
-      'What is Toppay? A clear explanation of the Toppay official platform, the Toppay login at web-toppay.in, how the Toppay app works and what the platform does not do.',
+      'What is Toppay? A clear explanation of the Toppay official platform, the Toppay login at toppay-offical.website, how the Toppay app works and what the platform does not do.',
     keywords: ['Toppay', 'Toppay official', 'about Toppay', 'Toppay kya hai', 'Top pay', 'Toppay app', 'Toppay login'],
     heroEyebrow: 'TopPay · About the platform',
     schemaType: 'AboutPage',
     body: `
       <h1>About Toppay</h1>
-      <p><strong>Toppay</strong> &mdash; frequently typed as <strong>Top pay</strong> or TopPay &mdash; is a mobile-first payment account platform. The <strong>Toppay official</strong> access point for this platform is the login page on <strong>web-toppay.in</strong>. This page explains what the platform actually is, what you can do after signing in, and just as importantly, what it does not do.</p>
+      <p><strong>Toppay</strong> &mdash; frequently typed as <strong>Top pay</strong> or TopPay &mdash; is a mobile-first payment account platform. The <strong>Toppay official</strong> access point for this platform is the login page on <strong>toppay-offical.website</strong>. This page explains what the platform actually is, what you can do after signing in, and just as importantly, what it does not do.</p>
 
       <h2>What is Toppay?</h2>
       <p>Toppay is a web-based account platform where a registered user signs in with a phone number and password to reach a personal dashboard. Inside that dashboard the user can see the balance, transaction history and payment tools that have been enabled for their specific account.</p>
@@ -178,13 +178,13 @@ const pages = [
 
       <h2>Is the Toppay app different from the website?</h2>
       <p>No. The <strong>Toppay app</strong> experience on this domain is delivered through a responsive web application. The same interface that loads on a desktop browser adapts to a phone screen. There is no separate installation step required to use it, and this site does not publish a <strong>Toppay APK</strong> file.</p>
-      <p>On Android, you can open web-toppay.in in Chrome and use the browser menu to &ldquo;Add to Home screen&rdquo;. On iPhone, use Safari&rsquo;s Share menu and &ldquo;Add to Home Screen&rdquo;. This creates an icon that opens the platform full-screen, which is how most users get an app-like experience without downloading anything. The details are in the <a href="/toppay-app-download.html">Toppay app download guide</a>.</p>
+      <p>On Android, you can open toppay-offical.website in Chrome and use the browser menu to &ldquo;Add to Home screen&rdquo;. On iPhone, use Safari&rsquo;s Share menu and &ldquo;Add to Home Screen&rdquo;. This creates an icon that opens the platform full-screen, which is how most users get an app-like experience without downloading anything. The details are in the <a href="/toppay-app-download.html">Toppay app download guide</a>.</p>
 
       <h2>Toppay login</h2>
       <p>The <strong>Toppay login</strong> asks for two pieces of information: your registered mobile number and your password. Some accounts additionally use an MPIN for transaction confirmation.</p>
       <p>Three rules that apply every single time:</p>
       <ul>
-        <li>Check the full domain in the address bar reads <strong>web-toppay.in</strong> before typing anything.</li>
+        <li>Check the full domain in the address bar reads <strong>toppay-offical.website</strong> before typing anything.</li>
         <li>Never share your password, OTP or MPIN with anyone, including someone claiming to be support staff.</li>
         <li>If login fails repeatedly, stop and use <a href="/toppay-password-help.html">password recovery</a> rather than guessing.</li>
       </ul>
@@ -212,17 +212,17 @@ const pages = [
     quick: {
       queries: ['Toppay', 'Toppay official', 'Top pay', 'Toppay kya hai', 'Toppay login'],
       summary:
-        'Toppay is a mobile-friendly payment account platform. The Toppay official login for this platform is at web-toppay.in, the app runs in your browser rather than as an APK, and the signed-in dashboard is always the current source of truth for your account.',
+        'Toppay is a mobile-friendly payment account platform. The Toppay official login for this platform is at toppay-offical.website, the app runs in your browser rather than as an APK, and the signed-in dashboard is always the current source of truth for your account.',
       audience: 'New or returning users who want to confirm what Toppay is, where the official login is, and which help page matches their task.',
       keyPoints: [
-        'The official account entry point is https://web-toppay.in/.',
+        'The official account entry point is https://toppay-offical.website/.',
         'Toppay, Top pay and TopPay are spelling variants of the same brand here.',
         'The Toppay app is a browser-based web app, not an APK download.',
         'Available features differ by account, so the signed-in dashboard is authoritative.',
       ],
       questions: [
         ['Is Toppay a mobile app or a website?', 'The Toppay experience on this domain is a responsive web app that works in any modern mobile browser. You can add it to your home screen for an app-like icon.'],
-        ['What is the official Toppay website?', 'This platform is served from web-toppay.in. Always confirm the complete address in your browser before entering account details.'],
+        ['What is the official Toppay website?', 'This platform is served from toppay-offical.website. Always confirm the complete address in your browser before entering account details.'],
         ['Does Toppay guarantee any earnings?', 'No. This site makes no promise of returns or profit. Treat any message promising guaranteed daily income in the Toppay name as a warning sign.'],
       ],
     },
@@ -252,7 +252,7 @@ const pages = [
       <p>Work through these in order. If any one of them fails, stop.</p>
 
       <h3>1. Check the exact domain, character by character</h3>
-      <p>This platform is served from <strong>web-toppay.in</strong>. Look at the full address bar, not the page design. Fake pages copy layouts perfectly; they cannot copy the domain. Watch for extra words, hyphens in different places, alternative endings (.com, .net, .xyz, .app), or lookalike characters.</p>
+      <p>This platform is served from <strong>toppay-offical.website</strong>. Look at the full address bar, not the page design. Fake pages copy layouts perfectly; they cannot copy the domain. Watch for extra words, hyphens in different places, alternative endings (.com, .net, .xyz, .app), or lookalike characters.</p>
 
       <h3>2. Check for HTTPS and a valid certificate</h3>
       <p>The address should begin with <code>https://</code> and your browser should not show any certificate warning. Tap the padlock icon and confirm the certificate is issued to the domain you expect. Any warning at all means leave the page.</p>
@@ -282,7 +282,7 @@ const pages = [
       </ul>
 
       <h2>What this site does and does not claim</h2>
-      <p>To be clear about our own position: this website publishes the Toppay login and public help guides for the platform served at web-toppay.in. We do not promise returns. We do not distribute APK files. We do not ask for credentials on any public page. What we can do is give you the verification tools above so you can judge for yourself.</p>
+      <p>To be clear about our own position: this website publishes the Toppay login and public help guides for the platform served at toppay-offical.website. We do not promise returns. We do not distribute APK files. We do not ask for credentials on any public page. What we can do is give you the verification tools above so you can judge for yourself.</p>
       <p>Read the <a href="/about-toppay.html">About Toppay</a> page for what the platform is, and the <a href="/toppay-support.html">support guide</a> if something has already gone wrong.</p>
 
       <h2>If you think you have been targeted</h2>
@@ -291,7 +291,7 @@ const pages = [
     quick: {
       queries: ['Toppay real or fake', 'is Toppay legit', 'Toppay review', 'Toppay safe or not', 'Toppay official'],
       summary:
-        'Several unrelated products use the name "Toppay", so brand-level reviews are unreliable. Verify the exact domain (web-toppay.in), refuse any APK sent by link, never share OTP or MPIN, and test with a small withdrawal before committing a large amount.',
+        'Several unrelated products use the name "Toppay", so brand-level reviews are unreliable. Verify the exact domain (toppay-offical.website), refuse any APK sent by link, never share OTP or MPIN, and test with a small withdrawal before committing a large amount.',
       audience: 'People deciding whether a Toppay site or app is genuine before signing up, depositing or downloading anything.',
       keyPoints: [
         'Verify the domain character by character; fake pages copy design but not the address.',
@@ -322,11 +322,11 @@ const pages = [
     schemaType: 'HowTo',
     body: `
       <h1>Toppay App Download</h1>
-      <p>If you searched <strong>Toppay app download</strong>, here is the direct answer: the <strong>Toppay app</strong> on this platform is a web application. You do not download an installer, and this site does not publish a <strong>Toppay APK</strong>. You open <strong>web-toppay.in</strong> in your phone browser, sign in, and optionally add it to your home screen so it behaves exactly like an installed app.</p>
+      <p>If you searched <strong>Toppay app download</strong>, here is the direct answer: the <strong>Toppay app</strong> on this platform is a web application. You do not download an installer, and this site does not publish a <strong>Toppay APK</strong>. You open <strong>toppay-offical.website</strong> in your phone browser, sign in, and optionally add it to your home screen so it behaves exactly like an installed app.</p>
       <p>That approach is deliberate, and it is meaningfully safer. Read on for the setup steps and the reasoning.</p>
 
       <h2>Step 1: Open the official Toppay login</h2>
-      <p>On your phone, open Chrome (Android) or Safari (iPhone) and go to <strong>web-toppay.in</strong>. Type it directly or use a saved bookmark. Avoid tapping links forwarded in chat groups &mdash; that is the most common route to a phishing copy.</p>
+      <p>On your phone, open Chrome (Android) or Safari (iPhone) and go to <strong>toppay-offical.website</strong>. Type it directly or use a saved bookmark. Avoid tapping links forwarded in chat groups &mdash; that is the most common route to a phishing copy.</p>
       <p>Confirm the address bar shows the complete domain and a padlock before you enter anything. Then use the <a href="/">Toppay login</a> form with your registered phone number and password.</p>
 
       <h2>Step 2: Add Toppay to your home screen (Android)</h2>
@@ -376,18 +376,18 @@ const pages = [
     quick: {
       queries: ['Toppay app download', 'Toppay app', 'Toppay apk', 'Top pay app download', 'Toppay official app'],
       summary:
-        'The Toppay app is a web application. Open web-toppay.in in Chrome or Safari, sign in, and use "Add to Home screen" for an app-like icon. This site does not publish a Toppay APK, and any APK sent by link should be refused.',
+        'The Toppay app is a web application. Open toppay-offical.website in Chrome or Safari, sign in, and use "Add to Home screen" for an app-like icon. This site does not publish a Toppay APK, and any APK sent by link should be refused.',
       audience: 'Android and iPhone users searching for a Toppay app download or Toppay APK who want the safe, official way to access the app.',
       keyPoints: [
-        'No installer is needed: web-toppay.in opens directly in a mobile browser.',
+        'No installer is needed: toppay-offical.website opens directly in a mobile browser.',
         'Android: Chrome menu, then Add to Home screen. iPhone: Safari Share, then Add to Home Screen.',
         'A sideloaded APK can request SMS and accessibility permissions that read your OTPs.',
         'This site does not publish a Toppay APK, so any such file came from elsewhere.',
       ],
       questions: [
-        ['How do I download the Toppay app?', 'Open web-toppay.in in your phone browser and use "Add to Home screen" (Android Chrome) or "Add to Home Screen" (iPhone Safari). This gives you an app icon that opens Toppay full-screen with no installation required.'],
+        ['How do I download the Toppay app?', 'Open toppay-offical.website in your phone browser and use "Add to Home screen" (Android Chrome) or "Add to Home Screen" (iPhone Safari). This gives you an app icon that opens Toppay full-screen with no installation required.'],
         ['Is there an official Toppay APK?', 'This site does not publish an APK file. The official mobile experience is the browser-based web app, which cannot request the SMS or accessibility permissions that malicious APK files rely on.'],
-        ['Does the Toppay app work on iPhone?', 'Yes. Open web-toppay.in in Safari, tap Share, then Add to Home Screen. The experience is the same as on Android.'],
+        ['Does the Toppay app work on iPhone?', 'Yes. Open toppay-offical.website in Safari, tap Share, then Add to Home Screen. The experience is the same as on Android.'],
       ],
     },
   },
@@ -405,7 +405,7 @@ const pages = [
     schemaType: 'WebPage',
     body: `
       <h1>Toppay APK: What You Need to Know</h1>
-      <p><strong>Toppay APK</strong> is a high-volume search, and the answer is short: <strong>this site does not host a Toppay APK file.</strong> The <strong>Toppay app</strong> here is a browser-based web application reached at <strong>web-toppay.in</strong>. This page explains what an APK actually is, why sideloading one for a payment service is genuinely dangerous, and what to do instead.</p>
+      <p><strong>Toppay APK</strong> is a high-volume search, and the answer is short: <strong>this site does not host a Toppay APK file.</strong> The <strong>Toppay app</strong> here is a browser-based web application reached at <strong>toppay-offical.website</strong>. This page explains what an APK actually is, why sideloading one for a payment service is genuinely dangerous, and what to do instead.</p>
 
       <h2>What is an APK?</h2>
       <p>An APK (Android Package Kit) is the installer file format for Android apps. When you install an app from the Play Store, Android downloads and installs an APK for you after the store has screened it. When you install an APK manually &mdash; &ldquo;sideloading&rdquo; &mdash; you skip that screening entirely and take full responsibility for whatever is inside the file.</p>
@@ -423,7 +423,7 @@ const pages = [
       <h2>How to use the Toppay app safely instead</h2>
       <p>The browser is the safe path. A web page runs inside the browser&rsquo;s sandbox and simply cannot request SMS access, accessibility control or overlay permission.</p>
       <ul>
-        <li>Open <strong>web-toppay.in</strong> in Chrome or Safari.</li>
+        <li>Open <strong>toppay-offical.website</strong> in Chrome or Safari.</li>
         <li>Verify the complete address and the padlock.</li>
         <li>Sign in through the <a href="/">Toppay login</a> form.</li>
         <li>Use <strong>Add to Home screen</strong> for an app-style icon &mdash; full steps in the <a href="/toppay-app-download.html">Toppay app download guide</a>.</li>
@@ -456,7 +456,7 @@ const pages = [
     quick: {
       queries: ['Toppay apk', 'Toppay apk download', 'Toppay app', 'Top pay apk', 'Toppay login'],
       summary:
-        'This site does not host a Toppay APK. Sideloaded payment APKs commonly request SMS, accessibility and overlay permissions, which together are enough to capture your OTPs. Use the browser-based Toppay app at web-toppay.in instead.',
+        'This site does not host a Toppay APK. Sideloaded payment APKs commonly request SMS, accessibility and overlay permissions, which together are enough to capture your OTPs. Use the browser-based Toppay app at toppay-offical.website instead.',
       audience: 'Anyone searching for a Toppay APK download who wants to know whether it is safe and what the official alternative is.',
       keyPoints: [
         'No APK is published on this site; the Toppay app is browser-based.',
@@ -465,9 +465,9 @@ const pages = [
         'A browser page cannot request any of those permissions.',
       ],
       questions: [
-        ['Can I download a Toppay APK from this site?', 'No. This page provides safe access guidance only. The official Toppay app on this platform is the mobile-friendly web login at web-toppay.in.'],
+        ['Can I download a Toppay APK from this site?', 'No. This page provides safe access guidance only. The official Toppay app on this platform is the mobile-friendly web login at toppay-offical.website.'],
         ['Why is sideloading a payment APK risky?', 'Sideloading bypasses store malware screening. Repackaged payment apps commonly request SMS, accessibility and overlay permissions, which allow an attacker to read your OTPs and overlay fake login screens.'],
-        ['How do I use Toppay on Android without an APK?', 'Open web-toppay.in in Chrome, sign in, then use the browser menu to Add to Home screen. The result behaves like an installed app.'],
+        ['How do I use Toppay on Android without an APK?', 'Open toppay-offical.website in Chrome, sign in, then use the browser menu to Add to Home screen. The result behaves like an installed app.'],
       ],
     },
   },
@@ -488,7 +488,7 @@ const pages = [
       <p>This is a beginner orientation to <strong>Toppay</strong>. It covers the four things that matter on day one: reaching the correct <strong>Toppay login</strong>, signing in, understanding what you are looking at, and knowing where to go when something does not work.</p>
 
       <h2>Step 1: Reach the correct Toppay login</h2>
-      <p>Open your browser and go to <strong>web-toppay.in</strong>. Type it manually the first time, then bookmark it. From that point on, always use the bookmark.</p>
+      <p>Open your browser and go to <strong>toppay-offical.website</strong>. Type it manually the first time, then bookmark it. From that point on, always use the bookmark.</p>
       <p>Why the bookmark matters more than it sounds: attackers buy search advertisements for payment brand names and place look-alike domains above the genuine result. Someone searching the brand every day is repeatedly exposed to that risk; someone using a bookmark never is.</p>
       <p>Before typing anything, confirm two things: the address bar reads the complete domain, and there is a padlock indicating a valid HTTPS certificate.</p>
 
@@ -540,11 +540,11 @@ const pages = [
     quick: {
       queries: ['How to use Toppay', 'Toppay login', 'Toppay app', 'Toppay dashboard'],
       summary:
-        'Open web-toppay.in and bookmark it, sign in with your registered number and password, set a unique password and MPIN, then make one small test transaction before committing a larger amount.',
+        'Open toppay-offical.website and bookmark it, sign in with your registered number and password, set a unique password and MPIN, then make one small test transaction before committing a larger amount.',
       audience: 'First-time users who need a simple orientation to the Toppay login, dashboard and account safety basics.',
       keyPoints: [
         'Bookmark the login page instead of searching for it each time.',
-        'Confirm web-toppay.in and the padlock before entering details.',
+        'Confirm toppay-offical.website and the padlock before entering details.',
         'Use a password that is not reused from any other service.',
         'Complete a small deposit and withdrawal before moving larger amounts.',
       ],
@@ -740,7 +740,7 @@ const pages = [
       <p>This guide covers the general checklist for a <strong>Toppay deposit</strong>. Available payment methods differ between accounts and change over time, so this page describes the checks that always apply rather than promising a specific button. For crypto specifically, use the <a href="/how-to-deposit-usdt-toppay.html">USDT deposit guide</a> instead &mdash; the risks there are different.</p>
 
       <h2>Step 1: Sign in first, always</h2>
-      <p>Open <a href="/">web-toppay.in</a> and sign in. Never begin a deposit from a link, a QR code, or payment details someone sent you in a message &mdash; not even from an account that appears to be official.</p>
+      <p>Open <a href="/">toppay-offical.website</a> and sign in. Never begin a deposit from a link, a QR code, or payment details someone sent you in a message &mdash; not even from an account that appears to be official.</p>
       <p>This is the single rule that prevents the most common deposit fraud. Attackers do not need to break the platform; they only need you to pay a different destination while believing you are paying the platform.</p>
 
       <h2>Step 2: Use the deposit option shown in your account</h2>
@@ -839,7 +839,7 @@ const pages = [
       <p>A <strong>Toppay USDT deposit</strong> is irreversible once broadcast. There is no cancel button and no support action that reverses a blockchain transaction. This guide is a checklist &mdash; work through it in order, every time, including when you feel confident.</p>
 
       <h2>Step 1: Open the deposit screen in your account</h2>
-      <p>Sign in at <a href="/">web-toppay.in</a> and open the USDT deposit section. Two pieces of information appear there and both matter equally:</p>
+      <p>Sign in at <a href="/">toppay-offical.website</a> and open the USDT deposit section. Two pieces of information appear there and both matter equally:</p>
       <ul>
         <li>The <strong>network</strong> (for example TRC20).</li>
         <li>The <strong>wallet address</strong> for that network.</li>
@@ -1047,7 +1047,7 @@ const pages = [
         <li><strong>Check for a trailing space.</strong> Copying a password often carries an invisible space with it.</li>
         <li><strong>Check autocorrect.</strong> Mobile keyboards capitalise the first character of a field by default.</li>
         <li><strong>Check the phone number.</strong> Are you using the number the account was registered with, without an unexpected country code?</li>
-        <li><strong>Check the site.</strong> Confirm the address bar reads <strong>web-toppay.in</strong>. Entering a correct password on the wrong site produces exactly this symptom &mdash; and hands your password to someone else.</li>
+        <li><strong>Check the site.</strong> Confirm the address bar reads <strong>toppay-offical.website</strong>. Entering a correct password on the wrong site produces exactly this symptom &mdash; and hands your password to someone else.</li>
         <li><strong>Try another browser.</strong> An extension or a corrupted cache occasionally breaks form submission.</li>
       </ul>
 
@@ -1132,7 +1132,7 @@ const pages = [
 
       <h2>Login problems</h2>
       <p><strong>Password not accepted:</strong> check for a trailing space, check autocorrect capitalisation, and confirm the registered phone number. After two failures use recovery rather than continuing to guess &mdash; see <a href="/toppay-password-help.html">password help</a>.</p>
-      <p><strong>Page will not load:</strong> confirm you are on web-toppay.in, check your connection, clear the site cache, and try a different browser.</p>
+      <p><strong>Page will not load:</strong> confirm you are on toppay-offical.website, check your connection, clear the site cache, and try a different browser.</p>
       <p><strong>Account locked:</strong> stop attempting and wait for the lockout window. Repeated attempts typically extend it.</p>
       <p><strong>OTP not arriving:</strong> check network coverage and your SMS spam filter. A new request invalidates the previous code, so use the most recent one.</p>
 
@@ -1206,12 +1206,12 @@ const pages = [
     schemaType: 'ContactPage',
     body: `
       <h1>Toppay Customer Care</h1>
-      <p>This page lists the official ways to reach <strong>Toppay</strong> support for the platform at <strong>web-toppay.in</strong>, and &mdash; equally important &mdash; how to recognise the fake support accounts that impersonate it.</p>
+      <p>This page lists the official ways to reach <strong>Toppay</strong> support for the platform at <strong>toppay-offical.website</strong>, and &mdash; equally important &mdash; how to recognise the fake support accounts that impersonate it.</p>
 
       <h2>Official contact channels</h2>
       <p>The channels below are the ones published by this platform. Any other account, number or address claiming to be Toppay support is not verified by us.</p>
       <ul>
-        <li><strong>In-account support</strong> &mdash; the most reliable route. Sign in at <a href="/">web-toppay.in</a> and use the support or help option in your dashboard. Because you are already authenticated, your account is identified without you sending any credentials.</li>
+        <li><strong>In-account support</strong> &mdash; the most reliable route. Sign in at <a href="/">toppay-offical.website</a> and use the support or help option in your dashboard. Because you are already authenticated, your account is identified without you sending any credentials.</li>
         <li><strong>Official Telegram channel</strong> &mdash; <a href="https://t.me/toppayofficial00" rel="noopener noreferrer nofollow">t.me/toppayofficial00</a></li>
         <li><strong>Official Telegram support</strong> &mdash; <a href="https://t.me/bolintoppay1" rel="noopener noreferrer nofollow">t.me/bolintoppay1</a></li>
       </ul>
@@ -1276,7 +1276,7 @@ const pages = [
         'In India, report financial fraud on 1930 or cybercrime.gov.in.',
       ],
       questions: [
-        ['What is the official Toppay customer care contact?', 'Use the support option inside your signed-in account at web-toppay.in, or the official Telegram channels listed on this page. Verify the handle character by character before messaging.'],
+        ['What is the official Toppay customer care contact?', 'Use the support option inside your signed-in account at toppay-offical.website, or the official Telegram channels listed on this page. Verify the handle character by character before messaging.'],
         ['Will Toppay support ever ask for my OTP?', 'No. No legitimate support process requires your password, OTP, MPIN, seed phrase or card details. A request for any of them means the contact is fraudulent.'],
         ['How do I report Toppay-related fraud in India?', 'Call the 1930 cyber-fraud helpline, file a report at cybercrime.gov.in, and contact your bank immediately. Keep all screenshots and transaction references as evidence.'],
       ],
@@ -1297,10 +1297,10 @@ const pages = [
     schemaType: 'WebPage',
     body: `
       <h1>Toppay Kya Hai — Puri Hindi Guide</h1>
-      <p><strong>Toppay</strong> (जिसे लोग <strong>Top pay</strong> भी लिखते हैं) एक mobile-friendly payment account platform है। इस platform का official <strong>Toppay login</strong> <strong>web-toppay.in</strong> पर है। इस page पर आपको Toppay से जुड़े सभी सवालों के जवाब हिंदी में मिलेंगे — login, app, APK, USDT और safety।</p>
+      <p><strong>Toppay</strong> (जिसे लोग <strong>Top pay</strong> भी लिखते हैं) एक mobile-friendly payment account platform है। इस platform का official <strong>Toppay login</strong> <strong>toppay-offical.website</strong> पर है। इस page पर आपको Toppay से जुड़े सभी सवालों के जवाब हिंदी में मिलेंगे — login, app, APK, USDT और safety।</p>
 
       <h2>Toppay login kaise kare?</h2>
-      <p>अपने browser में <strong>web-toppay.in</strong> खोलें। Address bar में पूरा domain और padlock दिखना चाहिए — तभी आगे बढ़ें।</p>
+      <p>अपने browser में <strong>toppay-offical.website</strong> खोलें। Address bar में पूरा domain और padlock दिखना चाहिए — तभी आगे बढ़ें।</p>
       <ol>
         <li>अपना registered mobile number डालें।</li>
         <li>अपना password डालें।</li>
@@ -1366,17 +1366,17 @@ const pages = [
     quick: {
       queries: ['Toppay kya hai', 'Toppay hindi', 'Toppay login hindi', 'Toppay app hindi', 'Toppay usdt hindi'],
       summary:
-        'Toppay ek mobile-friendly payment account platform hai jiska official login web-toppay.in par hai. App browser me chalta hai — koi APK download nahi karna hai. USDT bhejne se pehle network aur pura address verify karna sabse zaroori hai.',
+        'Toppay ek mobile-friendly payment account platform hai jiska official login toppay-offical.website par hai. App browser me chalta hai — koi APK download nahi karna hai. USDT bhejne se pehle network aur pura address verify karna sabse zaroori hai.',
       audience: 'हिंदी में Toppay login, app, APK aur USDT ki jankari chahne wale users.',
       keyPoints: [
-        'Official login web-toppay.in par hai — use bookmark kar lijiye.',
+        'Official login toppay-offical.website par hai — use bookmark kar lijiye.',
         'Toppay app ek web app hai, APK install karne ki zaroorat nahi.',
         'USDT me network mismatch se paisa hamesha ke liye ja sakta hai.',
         'Password, OTP ya MPIN kisi ko mat bataiye — support kabhi nahi maangta.',
       ],
       questions: [
-        ['Toppay kya hai?', 'Toppay ek mobile-friendly payment account platform hai. Is platform ka official login web-toppay.in par hai, jahan registered mobile number aur password se sign in kiya jata hai.'],
-        ['Toppay app download kaise kare?', 'Browser me web-toppay.in kholiye, phir Android par Chrome menu se "Add to Home screen" ya iPhone par Safari ke Share menu se "Add to Home Screen" chuniye. Koi APK download karne ki zaroorat nahi hai.'],
+        ['Toppay kya hai?', 'Toppay ek mobile-friendly payment account platform hai. Is platform ka official login toppay-offical.website par hai, jahan registered mobile number aur password se sign in kiya jata hai.'],
+        ['Toppay app download kaise kare?', 'Browser me toppay-offical.website kholiye, phir Android par Chrome menu se "Add to Home screen" ya iPhone par Safari ke Share menu se "Add to Home Screen" chuniye. Koi APK download karne ki zaroorat nahi hai.'],
         ['Kya Toppay real hai ya fake?', 'Toppay naam ki kai alag companies duniya bhar me hain, isliye sirf naam se kuch tay mat kijiye. Domain ek-ek akshar milaiye, link se aaya APK install mat kijiye, aur badi rakam se pehle chhoti amount withdraw karke test kijiye.'],
       ],
     },
@@ -1392,7 +1392,7 @@ const legalPages = [
     filename: 'privacy-policy.html',
     priority: '0.4',
     changefreq: 'yearly',
-    title: 'Privacy Policy | Toppay — web-toppay.in',
+    title: 'Privacy Policy | Toppay — toppay-offical.website',
     description:
       'Toppay privacy policy: what information this website collects, how account data is used and protected, cookie usage, and how to contact us about privacy.',
     keywords: ['Toppay privacy policy', 'Toppay data', 'Toppay'],
@@ -1401,7 +1401,7 @@ const legalPages = [
     noQuick: true,
     body: `
       <h1>Privacy Policy</h1>
-      <p>This privacy policy explains how <strong>Toppay</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;, this website) handles information on <strong>web-toppay.in</strong>. It applies to this website and the account platform served from it.</p>
+      <p>This privacy policy explains how <strong>Toppay</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;, this website) handles information on <strong>toppay-offical.website</strong>. It applies to this website and the account platform served from it.</p>
 
       <h2>Information we collect</h2>
       <p><strong>Account information.</strong> When you register or sign in, we process the mobile number associated with your account and the credentials you set. Passwords and MPINs are stored in hashed form and are not retrievable in plain text by us or by anyone else.</p>
@@ -1452,16 +1452,16 @@ const legalPages = [
     filename: 'terms-and-conditions.html',
     priority: '0.4',
     changefreq: 'yearly',
-    title: 'Terms and Conditions | Toppay — web-toppay.in',
+    title: 'Terms and Conditions | Toppay — toppay-offical.website',
     description:
-      'Toppay terms and conditions: eligibility, account responsibilities, prohibited use, transaction finality, limitation of liability and governing law for web-toppay.in.',
+      'Toppay terms and conditions: eligibility, account responsibilities, prohibited use, transaction finality, limitation of liability and governing law for toppay-offical.website.',
     keywords: ['Toppay terms', 'Toppay terms and conditions', 'Toppay'],
     heroEyebrow: 'TopPay · Legal',
     schemaType: 'WebPage',
     noQuick: true,
     body: `
       <h1>Terms and Conditions</h1>
-      <p>These terms govern your use of <strong>web-toppay.in</strong> and the <strong>Toppay</strong> account platform served from it. By accessing the site or using an account, you agree to them. If you do not agree, do not use the service.</p>
+      <p>These terms govern your use of <strong>toppay-offical.website</strong> and the <strong>Toppay</strong> account platform served from it. By accessing the site or using an account, you agree to them. If you do not agree, do not use the service.</p>
 
       <h2>1. Eligibility</h2>
       <p>You must be at least 18 years old and legally capable of entering into a binding agreement. You must use the service only where doing so is lawful for you, and you are responsible for compliance with the laws applicable to you.</p>
@@ -1522,7 +1522,7 @@ const legalPages = [
     filename: 'refund-policy.html',
     priority: '0.4',
     changefreq: 'yearly',
-    title: 'Refund & Cancellation Policy | Toppay — web-toppay.in',
+    title: 'Refund & Cancellation Policy | Toppay — toppay-offical.website',
     description:
       'Toppay refund and cancellation policy: which transactions can be reversed, why blockchain transfers are final, how to raise a dispute and what information is required.',
     keywords: ['Toppay refund policy', 'Toppay cancellation', 'Toppay dispute', 'Toppay'],
@@ -1531,7 +1531,7 @@ const legalPages = [
     noQuick: true,
     body: `
       <h1>Refund and Cancellation Policy</h1>
-      <p>This policy explains when a transaction on <strong>web-toppay.in</strong> can be cancelled or refunded, and the process for raising a dispute.</p>
+      <p>This policy explains when a transaction on <strong>toppay-offical.website</strong> can be cancelled or refunded, and the process for raising a dispute.</p>
 
       <h2>General principle</h2>
       <p>A transaction that has been submitted and confirmed cannot normally be cancelled by request. Whether any reversal is possible depends on the payment method used and the stage the transaction has reached. Please read the relevant section below.</p>
@@ -1584,7 +1584,7 @@ const legalPages = [
     filename: 'disclaimer.html',
     priority: '0.4',
     changefreq: 'yearly',
-    title: 'Disclaimer | Toppay — web-toppay.in',
+    title: 'Disclaimer | Toppay — toppay-offical.website',
     description:
       'Toppay disclaimer: the guides on this website are general information, not financial advice. Crypto values fluctuate and blockchain transactions cannot be reversed.',
     keywords: ['Toppay disclaimer', 'Toppay risk', 'Toppay'],
@@ -1593,7 +1593,7 @@ const legalPages = [
     noQuick: true,
     body: `
       <h1>Disclaimer</h1>
-      <p>This disclaimer applies to all content published on <strong>web-toppay.in</strong>.</p>
+      <p>This disclaimer applies to all content published on <strong>toppay-offical.website</strong>.</p>
 
       <h2>General information only</h2>
       <p>The guides on this website are general information about using the <strong>Toppay</strong> platform safely. They are not financial, investment, tax or legal advice, and they do not take account of your individual circumstances. Consider your own situation, and seek qualified professional advice where appropriate, before making financial decisions.</p>
@@ -1614,7 +1614,7 @@ const legalPages = [
       <p>Links to third-party websites and services are provided for convenience. We do not control them and accept no responsibility for their content, accuracy, practices or security.</p>
 
       <h2>Brand-name ambiguity</h2>
-      <p>Several unrelated companies, applications and websites worldwide use the name &ldquo;Toppay&rdquo; or a close variation. This website relates only to the platform served at web-toppay.in. Reviews, applications, APK files, phone numbers or domains associated with other Toppay-branded entities have no connection to this platform. See <a href="/toppay-real-or-fake.html">Toppay real or fake</a> for verification guidance.</p>
+      <p>Several unrelated companies, applications and websites worldwide use the name &ldquo;Toppay&rdquo; or a close variation. This website relates only to the platform served at toppay-offical.website. Reviews, applications, APK files, phone numbers or domains associated with other Toppay-branded entities have no connection to this platform. See <a href="/toppay-real-or-fake.html">Toppay real or fake</a> for verification guidance.</p>
 
       <h2>Limitation of liability</h2>
       <p>To the maximum extent permitted by law, we accept no liability for loss arising from reliance on the general information published on this website, from transactions you authorise, or from your use of third-party applications or websites.</p>
