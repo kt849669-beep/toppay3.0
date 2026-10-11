@@ -43,4 +43,4 @@ The active browser database client is in `user-app/js/config/supabase.js`.
 The public site domain and guide content are maintained in `seo-content.cjs`.
 Changing a hosting account does not update these values automatically.
 
-`vercel.json` defines routing and response headers. It contains no account, project ID or repository connection.
+Connect this GitHub repository to GoDaddy Node.js hosting for `toppay-offical.website`. Build with `npm run build` and start with `npm start`; `server.mjs` serves `dist/` with the existing routes and response headers.
