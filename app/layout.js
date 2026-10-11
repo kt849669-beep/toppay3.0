@@ -1,7 +1,7 @@
 ﻿import './globals.css';
 
 export const metadata = {
-  metadataBase: new URL('https://web-toppay.in'),
+  metadataBase: new URL('https://toppay-offical.website'),
   title: 'TopPay Login | Secure Account Access',
   description: 'Sign in to TopPay to access your account dashboard and available payment tools through the mobile-friendly TopPay web app.',
   alternates: { canonical: '/' },
