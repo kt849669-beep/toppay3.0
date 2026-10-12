@@ -22,6 +22,9 @@ const brandKeywords = [
   'Toppay official website',
   'Toppay login page',
   'Toppay real or fake',
+  'Toppay USDT to INR',
+  'Toppay official app',
+  'Toppay official site',
 ];
 
 const websiteNode = {
@@ -679,10 +682,10 @@ const pages = [
       <h2>How to use the calculator</h2>
       <ol>
         <li>Enter your USDT amount in the first box, or drag the slider.</li>
-        <li>Enter the rate you want to test in the rate field (for example 112 for &#8377;112 per USDT).</li>
+        <li>Enter the rate you want to test in the rate field (for example 109.65 for &#8377;109.65 per USDT).</li>
         <li>Read the estimated INR value.</li>
       </ol>
-      <p>To work backwards from a rupee target, divide your target amount by the rate. &#8377;50,000 at &#8377;112 per USDT is roughly 446 USDT.</p>
+      <p>To work backwards from a rupee target, divide your target amount by the rate. &#8377;50,000 at &#8377;109.65 per USDT is roughly 456 USDT.</p>
 
       <h2>Estimate versus actual amount</h2>
       <p>The calculator result is a gross figure. The amount that actually lands in your account is typically lower, because of:</p>
@@ -1624,6 +1627,8 @@ const legalPages = [
     `,
   },
 ];
+
+pages.push(...require('./seo-extra-pages.cjs'));
 
 module.exports = {
   domain,

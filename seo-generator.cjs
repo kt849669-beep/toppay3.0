@@ -12,10 +12,11 @@ const path = require('path');
 
 const { domain, websiteNode, organizationNode, pages, legalPages } = require('./seo-content.cjs');
 const { styles } = require('./seo-styles.cjs');
+const guide = require('./toppay-guide.cjs');
 
 const publicDir = path.join(__dirname, 'public');
 const socialImage = `${domain}/toppay-og.png`;
-const registerUrl = 'https://app-web.toppay-web.com/regist?code=2invite5p6';
+const registerUrl = `${domain}/toppay-registration.html`;
 const telegramUrl = 'https://t.me/toppayofficial00';
 
 if (!fs.existsSync(publicDir)) {
@@ -93,16 +94,16 @@ function calculatorHtml(page) {
       <section class="calculator-card" aria-labelledby="usdt-calculator-title">
         <div class="calc-head">
           <div><p class="eyebrow">USDT estimate</p><h2 id="usdt-calculator-title">USDT to INR Calculator</h2></div>
-          <span class="rate-badge" id="rateBadge">&#8377;112 / USDT</span>
+          <span class="rate-badge" id="rateBadge">&#8377;109.65 / USDT</span>
         </div>
         <div class="calc-boxes">
           <div class="calc-box"><label for="usdtAmount">You enter (USDT)</label><input id="usdtAmount" type="number" min="1" step="1" value="1000" inputmode="decimal" /></div>
           <span class="calc-arrow" aria-hidden="true">&darr;</span>
-          <div class="calc-box"><span>Estimated INR</span><output class="calc-output" id="inrOutput" for="usdtAmount inrRate">&#8377;1,12,000</output></div>
+          <div class="calc-box"><span>Estimated INR</span><output class="calc-output" id="inrOutput" for="usdtAmount inrRate">&#8377;1,09,650</output></div>
         </div>
         <div class="range-row">
           <input id="usdtRange" type="range" min="1" max="5000" step="1" value="1000" aria-label="USDT amount" />
-          <label class="rate-field" for="inrRate">&#8377; <input id="inrRate" type="number" min="0.01" step="0.01" value="112" inputmode="decimal" /> rate</label>
+          <label class="rate-field" for="inrRate">&#8377; <input id="inrRate" type="number" min="0.01" step="0.01" value="109.65" inputmode="decimal" /> rate</label>
         </div>
         <p class="calc-note">यह केवल अनुमान है। Transaction से पहले अपने signed-in TopPay dashboard में दिख रहे current rate, fees और final amount को verify करें।</p>
       </section>`;
@@ -216,108 +217,15 @@ function renderPage(page) {
     });
   }
 
-  const combinedKeywords = Array.from(
-    new Set([
-      'Toppay',
-      'Toppay login',
-      'Top pay',
-      'Toppay official',
-      'Toppay usdt',
-      'Toppay apk',
-      'Toppay app',
-      'Toppay apk download',
-      'Toppay app download',
-      'Toppay official website',
-      'Top pay login',
-      'Toppay login page',
-      ...(page.keywords || []),
-    ])
-  );
-  const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
-
-  return `<!doctype html>
-<html lang="${lang === 'hi' ? 'hi-IN' : 'en-IN'}">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${attr(page.title)}</title>
-    <meta name="description" content="${attr(page.description)}" />
-    <meta name="keywords" content="${attr(combinedKeywords.join(', '))}" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="author" content="TopPay" />
-    <link rel="canonical" href="${canonical}" />
-    <link rel="alternate" hreflang="en-IN" href="${canonical}" />
-    <link rel="alternate" hreflang="x-default" href="${canonical}" />
-    <link rel="icon" type="image/jpeg" href="/toppay-logo.jpeg" />
-    <link rel="apple-touch-icon" href="/toppay-logo.jpeg" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#1f2d7a" />
-    <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="TopPay" />
-    <meta property="og:locale" content="${lang === 'hi' ? 'hi_IN' : 'en_IN'}" />
-    <meta property="og:title" content="${attr(page.title)}" />
-    <meta property="og:description" content="${attr(page.description)}" />
-    <meta property="og:url" content="${canonical}" />
-    <meta property="og:image" content="${socialImage}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Toppay official logo" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${attr(page.title)}" />
-    <meta name="twitter:description" content="${attr(page.description)}" />
-    <meta name="twitter:image" content="${socialImage}" />
-    <script type="application/ld+json">${jsonLd}</script>
-    <style>${styles}</style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="brand" href="/toppay-guide.html" aria-label="Toppay Guides"><img class="brand-mark" src="/toppay-logo.svg" width="38" height="38" alt="Toppay official logo" /><span>TopPay</span></a>
-        <nav class="header-nav" aria-label="Primary navigation">
-          <a href="/toppay-guide.html">Home</a><a href="/usdt-to-inr.html">Exchange</a><a href="/about-toppay.html">About</a><a href="/toppay-guide.html#guide-list">Guides</a><a href="#common-questions">FAQ</a><a href="/toppay-customer-care.html">Contact</a><a href="/">Login</a>
-        </nav>
-        <div class="header-actions"><a class="button register-link" href="${registerUrl}" rel="noopener nofollow">Register Now</a><a class="button login-link" href="/">Toppay Login</a></div>
-      </div>
-    </header>
-    <main>
-      <section class="hero">
-        <div class="hero-grid">
-          <div>
-            <span class="rate-pill"><span class="rate-dot" aria-hidden="true"></span>Displayed rate &middot; 1 USDT = &#8377;112</span>
-            <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/toppay-guide.html">Toppay Guides</a> / ${shortTitle}</nav>
-            <div class="title-row"><div class="title-copy"><p class="eyebrow">${page.heroEyebrow || 'TopPay'}</p><h1>${heading}</h1></div></div>
-            <p class="hero-description">${page.description}</p>
-            <div class="hero-actions"><a class="button register-link" href="${registerUrl}" rel="noopener nofollow">Register Now</a><a class="button hero-login" href="/">Toppay Login</a><a class="button telegram-link" href="${telegramUrl}" rel="noopener noreferrer nofollow">Join Telegram</a></div>
-            <div class="trust-chips" aria-label="Toppay highlights"><span class="trust-chip">Official Toppay Login</span><span class="trust-chip">Secure Transactions</span><span class="trust-chip">USDT Guides</span><span class="trust-chip">Safety Checks</span></div>
-          </div>
-          <div class="hero-logo-card"><div><img src="/toppay-logo.svg" width="190" height="190" alt="Toppay logo &ndash; ${attr(heading)}" /><strong>${heading}</strong><span>Toppay official information and account guide</span></div></div>
-        </div>
-      </section>
-${calculatorHtml(page)}
-      <div class="content-grid">
-        <article class="content-panel">
-${bodyWithoutH1}
-          <p class="calc-note">Last updated: ${today} &middot; Published by TopPay &middot; <a href="/disclaimer.html">Read the disclaimer</a></p>
-        </article>
-        <aside class="side-stack" aria-label="Toppay quick links">
-          <section class="side-card"><p class="eyebrow">Quick access</p><h2>Toppay account help</h2><a href="/">Open Toppay Login</a><a href="/toppay-password-help.html">Password Help</a><a href="/toppay-customer-care.html">Customer Care</a><a href="/toppay-real-or-fake.html">Real or Fake?</a></section>
-          <section class="side-card"><p class="eyebrow">Safety check</p><h2>Before you continue</h2><p>Verify the complete <strong>toppay-offical.website</strong> address, never install a Toppay APK sent by link, and never share your password, OTP or MPIN with anyone.</p></section>
-        </aside>
-      </div>
-${quickBlockHtml(page)}
-${guideNavigation}
-    </main>
-${siteFooter}
-${page.calculator ? calculatorScript : ''}
-  </body>
-</html>
-`;
+  if (page.filename === 'toppay-guide.html') return guide.landing(websiteNode, organizationNode);
+  return guide.article(page, graph, quickBlockHtml(page), calculatorHtml(page), page.calculator ? calculatorScript : '');
 }
 
 /* ------------------------------------------------------------------ *
  *  Write everything
  * ------------------------------------------------------------------ */
+
+guide.syncLogin();
 
 let written = 0;
 for (const page of allPages) {
